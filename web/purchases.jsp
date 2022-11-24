@@ -1,7 +1,7 @@
 <%-- 
-    Document   : error404
-    Created on : Nov 24, 2022, 11:19:49 AM
-    Author     : Charles
+    Document   : orders
+    Created on : Nov 24, 2022, 12:50:10 PM
+    Author     : chris
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,10 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Error 404</title>
+        <title>JSP Page</title>
     </head>
     <body>
-        <h1>Error 404!</h1>
-        <p>page not found.</p>
+        <h1>Hello World!</h1>
     </body>
 </html>
