@@ -9,3 +9,111 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 what
 */
 
+/* Custom properties/variables  */
+:root {
+    --main-blue: #0b2437;
+    --main-green: #0f2d26;
+    --main-yellow: #a18338;
+    --main-red: #922928;
+    --main-pink: #fae5e4;
+    --main-white: #f0f0f0;
+}
+
+/* Base reset */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* box-sizing and font sizing */
+*,*::before,*::after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+/* Base styles */
+body {
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--main-green);
+}
+
+h1 {
+    font-weight: 900;
+}
+
+
+.body {
+    min-height: calc(100vh - 193px);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 10px;
+}
+
+/* header */
+header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0px 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
+    background-color: var(--main-green);
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-wrap: wrap;
+    }
+}
+
+.logo {
+    width: 60vw;
+    color: var(--main-white);
+}
+
+@media (max-width: 650px) {
+    .logo {
+        margin-top: 15px;
+        width: 100%;
+        position: relative;
+    }
+}
+
+.nav-list {
+    display: flex;
+    margin-right: 2rem;
+}
+
+.nav-list ul {
+    list-style: none;
+}
+
+.nav-list a {
+    display: block;
+    font-size: 2rem;
+    padding: 2rem;
+    color: var(--main-white);
+    text-decoration: none;
+}
+
+.nav-list a:hover {
+    color: var(--main-yellow);
+}
+
+
+
