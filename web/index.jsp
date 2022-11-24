@@ -9,7 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome!</title>
+        <title>Home</title>
+        <link rel="stylesheet" href="styles/styles.css">
     </head>
     <body>
         <%
@@ -25,13 +26,21 @@
                 response.sendRedirect("login.jsp");
             }
         %>
-        <h1>Website Name</h1>
         
-        <navbar>
-        <form action="Logout">
-            <input type="submit" value="Logout">
-        </form>      
-        </navbar>
-    
+        <header id="header">
+            <div class="logo">
+                <h1>Website Name</h1>
+            </div>
+            <nav class="navbar">
+                <ul class="nav-list">
+                    <li><a href="index.jsp">Home</a></li>
+                    <li><a href="order-page.jsp">Discover</a></li>
+                    <li><a href="purchases.jsp">Order Tracker</a></li>
+                    <li><a href="cart.jsp">Cart</a></li>
+                    <li><a href="Logout">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+        
     </body>
 </html>
