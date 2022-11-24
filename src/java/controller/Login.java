@@ -4,13 +4,17 @@
  */
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Users;
 
 /**
  *
@@ -31,24 +35,23 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Login</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-            
             String username = request.getParameter("username");
             String password = request.getParameter("password");
 
-            if (username.equals("charles") && password.equals("1234"))  {
+            Users u = new Users();
+            File credentialsFile = new File(getServletContext().getRealPath("/login-credentials.txt"));
+            Map<String, String> loginCredentials = u.getLoginCredentials(credentialsFile);
+            
+            if (loginCredentials.containsKey(username) && password.equals(loginCredentials.get(username)))  {
                 HttpSession session = request.getSession();
                 session.setAttribute("username", username);
                 response.sendRedirect("index.jsp");
+            }
+            else    {
+                // this shows an error message after entering an invalid username or password
+                HttpSession session = request.getSession();
+                session.setAttribute("invalidCredentials", true);
+                response.sendRedirect("login.jsp");
             }
         }
     }
