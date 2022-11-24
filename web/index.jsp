@@ -25,6 +25,13 @@
                 response.sendRedirect("login.jsp");
             }
         %>
-        <h1>Hello World!</h1>
+        <h1>Website Name</h1>
+        
+        <navbar>
+        <form action="Logout">
+            <input type="submit" value="Logout">
+        </form>      
+        </navbar>
+    
     </body>
 </html>
