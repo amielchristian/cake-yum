@@ -2,8 +2,6 @@
     Document   : error500
     Created on : Nov 24, 2022, 11:38:59 AM
     Author     : Charles
-    Created on : Nov 24, 2022, 11:39:49 AM
-    Author     : chris
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
