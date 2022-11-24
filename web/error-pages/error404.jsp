@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Error 404!</h1>
+        <p>page not found.</p>
     </body>
 </html>
