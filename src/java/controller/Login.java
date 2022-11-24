@@ -1,11 +1,9 @@
-package controller;
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+package controller;
 
-import model.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -43,6 +41,15 @@ public class Login extends HttpServlet {
             out.println("<h1>Servlet Login at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
+            
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+
+            if (username.equals("charles") && password.equals("1234"))  {
+                HttpSession session = request.getSession();
+                session.setAttribute("username", username);
+                response.sendRedirect("index.jsp");
+            }
         }
     }
 
@@ -58,14 +65,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-        
-        if (username.equals("charles") && password.equals("1234"))  {
-            HttpSession session = request.getSession();
-            session.setAttribute("username", username);
-            response.sendRedirect("index.jsp");
-        }
+        processRequest(request, response);
     }
 
     /**
