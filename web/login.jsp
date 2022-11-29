@@ -12,7 +12,13 @@
         <title>Login</title>
     </head>
     <body>
-        <form action="Login">
+        <%
+            // This scriptlet prints out an error message when invalid login credentials are entered.
+            if ((Boolean)session.getAttribute("invalidCredentials")) {
+                out.println("<p style=\"color:red\">Invalid username or password. Please try again.</p>");
+            }
+        %>
+        <form action="Login" method="post">
             Enter username: <input type="text" name="username"><br>
             Enter password <input type="password" name="password"><br>
             <input type="submit" value="Login">

@@ -18,10 +18,12 @@
         Login Scriptlet
             If the user has not logged in, this scriptlet prevents them from seeing the other pages in the web app
         */
+        
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
             response.setHeader("Pragma", "no-cache");
             response.setHeader("Expires", "0");
             
+            session.setAttribute("invalidCredentials", false);
             if (session.getAttribute("username") == null)   {
                 response.sendRedirect("login.jsp");
             }
