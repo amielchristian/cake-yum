@@ -1,6 +1,6 @@
 <%-- 
-    Document   : cart
-    Created on : Nov 24, 2022, 12:47:06 PM
+    Document   : account
+    Created on : Nov 30, 2022, 1:41:15 AM
     Author     : chris
 --%>
 
@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Shopping Cart</title>
+        <title>Account Details</title>
         <link rel="stylesheet" href="styles/styles.css">
     </head>
     <body>
@@ -46,5 +46,19 @@
                 </ul>
             </nav>
         </header>
+        
+        <h1><%= session.getAttribute("username") %>'s Account</h1>
+        <table>
+            <tr><th>Account Details</th></tr>
+            <tr>
+                <td>Name: </td>
+            </tr>
+            <tr>
+                <td>Address: </td>
+            </tr>
+            <tr>
+                <td>Contact Number: </td>
+            </tr>
+        </table>
     </body>
 </html>
