@@ -32,6 +32,10 @@ public class Account extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            response.setHeader("Pragma", "no-cache");
+            response.setHeader("Expires", "0");
+            
             RequestDispatcher view = request.getRequestDispatcher("account.jsp");
             view.include(request, response);
             
