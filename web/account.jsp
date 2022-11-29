@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Nov 24, 2022, 10:52:37 AM
+    Document   : account
+    Created on : Nov 30, 2022, 1:41:15 AM
     Author     : chris
 --%>
 
@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home</title>
+        <title>Account Details</title>
         <link rel="stylesheet" href="styles/styles.css">
     </head>
     <body>
@@ -20,8 +20,6 @@
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
             response.setHeader("Pragma", "no-cache");
             response.setHeader("Expires", "0");
-            
-            session.setAttribute("invalidCredentials", false);
         %>
         
         <header id="header">
@@ -48,6 +46,5 @@
                 </ul>
             </nav>
         </header>
-        
     </body>
 </html>
