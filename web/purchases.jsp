@@ -15,16 +15,11 @@
     <body>
         <%
         /*
-        Login Scriptlet
-            If the user has not logged in, this scriptlet prevents them from seeing the other pages in the web app
+        Cache Scriptlet
         */
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
             response.setHeader("Pragma", "no-cache");
             response.setHeader("Expires", "0");
-            
-            if (session.getAttribute("username") == null)   {
-                response.sendRedirect("login.jsp");
-            }
         %>
         
         <header id="header">
@@ -37,7 +32,17 @@
                     <li><a href="order-page.jsp">Discover</a></li>
                     <li><a href="purchases.jsp">Order Tracker</a></li>
                     <li><a href="cart.jsp">Cart</a></li>
-                    <li><a href="Logout">Logout</a></li>
+                    <%
+                    /*
+                    Login/Logout Scriptlet        
+                    */
+                        if (session.getAttribute("username") == null)   {
+                            out.println("<li><a href=\"login.jsp\">Login</a></li>");
+                        }
+                        else    {
+                            out.println("<li><a href=\"Logout\">Logout</a></li>");
+                        }
+                    %>
                 </ul>
             </nav>
         </header>
