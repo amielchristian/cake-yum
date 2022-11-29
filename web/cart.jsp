@@ -40,7 +40,7 @@
                             out.println("<li><a href=\"login.jsp\">Login</a></li>");
                         }
                         else    {
-                            out.println("<li><a href=\"account.jsp\"><img height=\"20\" src=\"user.png\">  "+session.getAttribute("username")+"</a></li>");
+                            out.println("<li><a href=\"Account\"><img height=\"20\" src=\"user.png\">  "+session.getAttribute("username")+"</a></li>");
                         }
                     %>
                 </ul>

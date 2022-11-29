@@ -40,25 +40,11 @@
                             out.println("<li><a href=\"login.jsp\">Login</a></li>");
                         }
                         else    {
-                            out.println("<li><a href=\"account.jsp\"><img height=\"20\" src=\"user.png\">  "+session.getAttribute("username")+"</a></li>");
+                            out.println("<li><a href=\"Account\"><img height=\"20\" src=\"user.png\">  "+session.getAttribute("username")+"</a></li>");
                         }
                     %>
                 </ul>
             </nav>
         </header>
-        
-        <h1><%= session.getAttribute("username") %>'s Account</h1>
-        <table>
-            <tr><th>Account Details</th></tr>
-            <tr>
-                <td>Name: </td>
-            </tr>
-            <tr>
-                <td>Address: </td>
-            </tr>
-            <tr>
-                <td>Contact Number: </td>
-            </tr>
-        </table>
     </body>
 </html>
