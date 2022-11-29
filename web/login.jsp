@@ -16,6 +16,9 @@
             // This scriptlet prints out an error message when invalid login credentials are entered.
             if ((Boolean)session.getAttribute("invalidCredentials")) {
                 out.println("<p style=\"color:red\">Invalid username or password. Please try again.</p>");
+                session.setAttribute("invalidCredentials", true);
+                session.removeAttribute("username");
+                session.invalidate();
             }
         %>
         <form action="Login" method="post">
