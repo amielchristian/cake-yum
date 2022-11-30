@@ -47,61 +47,31 @@ public class Account extends HttpServlet {
                 String username = (String)session.getAttribute("username"); 
                 out.println("<h1>"+username+"'s Account</h1>");
                 out.println("<table>");
-                out.println("<tr><th>Account Details</th></tr>");
-                out.println("<tr>");
-                    out.println("<td>Name: </td>");
-                    out.println("<td>");
+                    out.println("<tr><th>Account Details</th></tr>");
+                    out.println("<tr>");
+                        out.println("<td>Name: </td>");
+                        out.println("<td>");
 
-                        if (username.equals("amiel"))
-                            out.println("Amiel Mala-ay");
-                        if (username.equals("christian"))
-                            out.println("Christian Mala-ay");
-                        if (username.equals("charles"))
-                            out.println("Charles Joaquin");
-                        if (username.equals("clarisse"))
-                            out.println("Clarisse Salazar");
-                        if (username.equals("denise"))
-                            out.println("Denise Poblete");
-                        if (username.equals("lawrence"))
-                            out.println("Lawrence Decamora");
+                            String name = (String)getServletConfig().getInitParameter(username+"-name");
+                            out.println(name);
 
                         out.println("</td>");
                     out.println("</tr>");
                     out.println("<tr>");
-                        out.println("<td>Address: </td>");
-                        out.println("<td>");
+                            out.println("<td>Address: </td>");
+                            out.println("<td>");
 
-                            if (username.equals("amiel"))
-                                out.println("Caloocan");
-                            if (username.equals("christian"))
-                                out.println("Malabon");
-                            if (username.equals("charles"))
-                                out.println("Quezon City");
-                            if (username.equals("clarisse"))
-                                out.println("Mandaluyong");
-                            if (username.equals("denise"))
-                                out.println("Manila");
-                            if (username.equals("lawrence"))
-                                out.println("San Juan");
+                            String address = (String)getServletConfig().getInitParameter(username+"-address");
+                            out.println(address);
 
-                        out.println("</td>");
+                            out.println("</td>");
                     out.println("</tr>");
                     out.println("<tr>");
                         out.println("<td>Contact Number: </td>");
                         out.println("<td>");
 
-                            if (username.equals("amiel"))
-                                out.println("09445817726");
-                            if (username.equals("christian"))
-                                out.println("09314579962");
-                            if (username.equals("charles"))
-                                out.println("09817463289");
-                            if (username.equals("clarisse"))
-                                out.println("09216483729");
-                            if (username.equals("denise"))
-                                out.println("09323286743");
-                            if (username.equals("lawrence"))
-                                out.println("09671482569");
+                            String number = (String)getServletConfig().getInitParameter(username+"-number");
+                            out.println(number);
 
                         out.println("</td>");
                     out.println("</tr>");

@@ -11,6 +11,29 @@
     <servlet>
         <servlet-name>Account</servlet-name>
         <servlet-class>controller.Account</servlet-class>
+        
+        <!-- Parameters -->
+            <!-- Names -->
+                <init-param><param-name>amiel-name</param-name><param-value>Amiel Mala-ay</param-value></init-param>
+                <init-param><param-name>christian-name</param-name><param-value>Christian Mala-ay</param-value></init-param>
+                <init-param><param-name>charles-name</param-name><param-value>Charles Joaquin</param-value></init-param>
+                <init-param><param-name>clarisse-name</param-name><param-value>Clarisse Salazar</param-value></init-param>
+                <init-param><param-name>denise-name</param-name><param-value>Denise Poblete</param-value></init-param>
+                <init-param><param-name>lawrence-name</param-name><param-value>Lawrence Decamora</param-value></init-param>
+            <!-- Addresses -->
+                <init-param><param-name>amiel-address</param-name><param-value>Caloocan</param-value></init-param>
+                <init-param><param-name>christian-address</param-name><param-value>Malabon</param-value></init-param>
+                <init-param><param-name>charles-address</param-name><param-value>Quezon City</param-value></init-param>
+                <init-param><param-name>clarisse-address</param-name><param-value>Mandaluyong</param-value></init-param>
+                <init-param><param-name>denise-address</param-name><param-value>Manila</param-value></init-param>
+                <init-param><param-name>lawrence-address</param-name><param-value>San Juan</param-value></init-param>
+            <!-- Contact Numbers -->
+                <init-param><param-name>amiel-number</param-name><param-value>09445817726</param-value></init-param>
+                <init-param><param-name>christian-number</param-name><param-value>09314579962</param-value></init-param>
+                <init-param><param-name>charles-number</param-name><param-value>09817463289</param-value></init-param>
+                <init-param><param-name>clarisse-number</param-name><param-value>09216483729</param-value></init-param>
+                <init-param><param-name>denise-number</param-name><param-value>09323286743</param-value></init-param>
+                <init-param><param-name>lawrence-number</param-name><param-value>09671482569</param-value></init-param>
     </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
