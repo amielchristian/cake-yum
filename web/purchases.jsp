@@ -22,6 +22,8 @@
             response.setHeader("Expires", "0");
         %>
         
+        <!-- HEADER -->
         <%@ include file = "header.jsp" %>
+        <!-- END OF HEADER -->
     </body>
 </html>

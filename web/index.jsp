@@ -24,7 +24,8 @@
             session.setAttribute("invalidCredentials", false);
         %>
         
+        <!-- HEADER -->
         <%@ include file = "header.jsp" %>
-        
+        <!-- END OF HEADER -->
     </body>
 </html>
