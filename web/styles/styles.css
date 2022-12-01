@@ -5,18 +5,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 /* 
     Created on : Nov 24, 2022, 11:20:12 AM
     Author     : chris
-
-what
 */
 
 /* Custom properties/variables  */
 :root {
-    --main-blue: #0b2437;
-    --main-green: #0f2d26;
-    --main-yellow: #a18338;
-    --main-red: #922928;
-    --main-pink: #fae5e4;
-    --main-white: #f0f0f0;
+    --main-yellow: #F7F6CF;
+    --main-turquoise: #B6D8F2;
+    --main-linen: #F4CFDF;
+    --main-blue-steel: #5784BA;
+    --main-blue-sky: #9AC8EB;
+    --main-serenade: #FAE7D9;
+    --main-white: #F0F0F0;
 }
 
 /* Base reset */
@@ -33,6 +32,7 @@ what
 html {
     box-sizing: border-box;
     font-size: 62.5%;
+    background-color: var(--main-serenade);
 }
 
 /* Base styles */
@@ -69,29 +69,22 @@ header {
     width: 100%;
     padding: 0px 20px;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.4);
-    background-color: var(--main-green);
-}
-
-@media (max-width: 600px) {
-    header {
-        flex-wrap: wrap;
-    }
+    background-color: var(--main-blue-steel);
 }
 
 .logo {
-    width: 60vw;
-    color: var(--main-white);
+    width: 100%;
+    font-family: 'Mogra', cursive;
+    color: var(--main-serenade);
+    border-bottom: 1px solid var(--main-serenade);
 }
 
-@media (max-width: 650px) {
-    .logo {
-        margin-top: 15px;
-        width: 100%;
-        position: relative;
-    }
+.logo h1 {
+    text-align: center;
+    font-size: 10vw;
 }
 
 .nav-list {
@@ -99,7 +92,7 @@ header {
     margin-right: 2rem;
 }
 
-.nav-list ul {
+.nav-list li {
     list-style: none;
 }
 
@@ -107,7 +100,7 @@ header {
     display: block;
     font-size: 2rem;
     padding: 2rem;
-    color: var(--main-white);
+    color: var(--main-serenade);
     text-decoration: none;
 }
 
