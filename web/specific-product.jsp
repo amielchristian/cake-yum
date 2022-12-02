@@ -1,7 +1,7 @@
 <%-- 
     Document   : specific-product
     Created on : 12 2, 22, 7:47:28 AM
-    Author     : Clarisse Salazar
+    Author     : Clarisse Salazar 
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
