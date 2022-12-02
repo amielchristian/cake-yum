@@ -1,7 +1,7 @@
 <%-- 
     Document   : specific-product
     Created on : 12 2, 22, 7:47:28 AM
-    Author     : Clarisse
+    Author     : Clarisse Salazar
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="cont">
                                     <button class="button">Add to Cart</button>
-                                </div>
+                                </div> 
 
 
 

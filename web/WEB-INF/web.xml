@@ -54,10 +54,11 @@
     </session-config>
     
     <!-- TRY PAGE -->
+    <!--
     <welcome-file-list>
         <welcome-file>specific-product.jsp</welcome-file>
     </welcome-file-list>
-    
+    -->
     
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
