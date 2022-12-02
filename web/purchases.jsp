@@ -22,29 +22,8 @@
             response.setHeader("Expires", "0");
         %>
         
-        <header id="header">
-            <div class="logo">
-                <h1>Website Name</h1>
-            </div>
-            <nav class="navbar">
-                <ul class="nav-list">
-                    <li><a href="index.jsp">Home</a></li>
-                    <li><a href="order-page.jsp">Discover</a></li>
-                    <li><a href="purchases.jsp">Order Tracker</a></li>
-                    <li><a href="cart.jsp">Cart</a></li>
-                    <%
-                    /*
-                    Login/Logout Scriptlet        
-                    */
-                        if (session.getAttribute("username") == null)   {
-                            out.println("<li><a href=\"login.jsp\">Login</a></li>");
-                        }
-                        else    {
-                            out.println("<li><a href=\"Account\"><img height=\"20\" src=\"user.png\">  "+session.getAttribute("username")+"</a></li>");
-                        }
-                    %>
-                </ul>
-            </nav>
-        </header>
+        <!-- HEADER -->
+        <%@ include file = "header.jsp" %>
+        <!-- END OF HEADER -->
     </body>
 </html>
