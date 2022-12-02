@@ -12,26 +12,27 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Mogra&display=swap" rel="stylesheet"> 
-        <link rel="stylesheet" href="styles/styles.css">
+        <link href="styles/styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <header id="header">
         <div class="logo">
+            <img src="temp-image-folder/cupcake.PNG" alt="logo"/>
             <h1>Dessert Shop</h1>
         </div>
         <nav class="navbar">
             <ul class="nav-list">
-                <li><a href="index.jsp">Shop</a></li>
-                <li><a href="order-page.jsp">Products</a></li>
-                <li><a href="purchases.jsp">Order Tracker</a></li>
-                <li><a href="cart.jsp">Cart</a></li>
+                <li><a href="index.jsp">SHOP</a></li>
+                <li><a href="order-page.jsp">PRODUCTS</a></li>
+                <li><a href="purchases.jsp">ORDER TRACKER</a></li>
+                <li><a href="cart.jsp">CART</a></li>
                     <%
                         /*
                     Login/Logout Scriptlet        
                          */
                         if (session.getAttribute("username") == null) {
-                            out.println("<li><a href=\"login.jsp\">Login</a></li>");
+                            out.println("<li><a href=\"login.jsp\">LOGIN</a></li>");
                         } else {
-                            out.println("<li><a href=\"Account\"><img height=\"20\" src=\"user.png\">  " + session.getAttribute("username") + "</a></li>");
+                            out.println("<li><a href=\"Account\"><img height=\"20\" src=\"user.png\">  " + session.getAttribute("username").toString().toUpperCase() + "</a></li>");
                         }
                     %>
             </ul>

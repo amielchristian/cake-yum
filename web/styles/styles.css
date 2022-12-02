@@ -15,7 +15,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     --main-blue-steel: #5784BA;
     --main-blue-sky: #9AC8EB;
     --main-serenade: #FAE7D9;
-    --main-white: #F0F0F0;
+    --main-white: #F1F5F9;
 }
 
 /* Base reset */
@@ -32,7 +32,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 html {
     box-sizing: border-box;
     font-size: 62.5%;
-    background-color: var(--main-serenade);
+    background-color: var(--main-white);
 }
 
 /* Base styles */
@@ -72,19 +72,27 @@ header {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background-color: var(--main-blue-steel);
+    background-color: var(--main-blue-sky);
 }
 
 .logo {
     width: 100%;
     font-family: 'Mogra', cursive;
-    color: var(--main-serenade);
-    border-bottom: 1px solid var(--main-serenade);
+    color: var(--main-white);
+    border-bottom: 1px solid var(--main-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    width: 6%;
+    height: auto;
 }
 
 .logo h1 {
-    text-align: center;
-    font-size: 10vw;
+    font-size: 5vw;
+    outline: 3px black;
 }
 
 .nav-list {
@@ -100,13 +108,10 @@ header {
     display: block;
     font-size: 2rem;
     padding: 2rem;
-    color: var(--main-serenade);
+    color: var(--main-white);
     text-decoration: none;
 }
 
 .nav-list a:hover {
-    color: var(--main-yellow);
+    color: var(--main-blue-steel);
 }
-
-
-
