@@ -39,7 +39,7 @@
                             <div class="row">
                                 <div class="box">
                                     <div class="big">
-                                    <img class="img" src="https://i.ytimg.com/vi/vGE-RfP6KRE/maxresdefault.jpg">
+                                    <img class="img" src="<%=getServletContext().getContextPath() + "/products/" + request.getAttribute("file")%>/<%=request.getAttribute("file")%>.jpg">
                                     </div>
                                     <div class="cont">
                                         <div class="quantity">
@@ -58,14 +58,14 @@
                                     <div class="whole">
                                         
                                         <div class="border">
-                                            <h1 class="title">Red Velvet Cake</h1>  
+                                            <h1 class="title"><%= (String) request.getAttribute("formatted-name")%></h1>  
                                         </div>
                                         <div class="border">
-                                            <div class="description">Red velvet cake tastes like very mild cocoa with a slightly tart edge. The cream cheese frosting is the most forward flavor. Perhaps even more important than the taste is the texture: smooth, soft, tender and light with creamy icing.</div>
+                                            <div class="description"><%= (String) request.getAttribute("description")%></div>
                                         </div><!-- comment -->
                                         <div class="border bottom">
                                             <div class="price">
-                                               &#8369 150
+                                              <%= (String) request.getAttribute("price")%>
                                             </div>
 
                                         </div>
