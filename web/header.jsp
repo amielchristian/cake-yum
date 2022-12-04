@@ -22,7 +22,7 @@
         <nav class="navbar">
             <ul class="nav-list">
                 <li><a href="index.jsp">SHOP</a></li>
-                <li><a href="order-page.jsp">PRODUCTS</a></li>
+                <li><a href="products.jsp">PRODUCTS</a></li>
                 <li><a href="purchases.jsp">ORDER TRACKER</a></li>
                 <li><a href="cart.jsp">CART</a></li>
                     <%
