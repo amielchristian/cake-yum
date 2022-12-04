@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Error 404</title>
         <link href="../styles/error-page-styles.css" rel="stylesheet" type="text/css"/>
-        <link href="styles/error-page-styles.css" rel="stylesheet" type="text/css"/>z
+        <link href="styles/error-page-styles.css" rel="stylesheet" type="text/css"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
