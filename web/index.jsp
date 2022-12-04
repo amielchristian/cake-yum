@@ -12,6 +12,7 @@
         <title>Home</title>
         <link href="https://fonts.googleapis.com/css2?family=Mogra&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="styles/index-styles.css">
+        <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet'>
     </head>
     <body>
         <%
@@ -47,7 +48,9 @@
 
         <div class="container">
             <div class="card">
+                <div class="circle">
                 <img class="icon-img" src="shop-images/clock-icon.png">
+                </div>
                 <p class="title">Open Hours</p>
 
                 <h3>Weekdays</h3>
@@ -58,7 +61,9 @@
             </div>
 
             <div class="card">
+                <div class="circle">
                 <img class="icon-img" src="shop-images/services-icon.png">
+                </div>
                 <p class="title">Services</p>
                 <h5>Various pastries, cakes, and beverages will be available in the shop. 
                     In some cases, catering and deliveries will also be offered. 
@@ -67,7 +72,9 @@
             </div>
 
             <div class="card">
+                <div class="circle">
                 <img class="icon-img" src="shop-images/team-icon.png">
+                </div>
                 <p class="title">Team</p>
                 <h5>
                     The four people behind this amaaaazingg shop are Charles Joaquin, Amiel Mala-ay, Patricia Poblete and Ann Salazar. 
@@ -76,7 +83,9 @@
             </div>
 
             <div class="card">
+                <div class="circle">
                 <img class="icon-img" src="shop-images/call-icon.png">
+                </div>
                 <p class="title">Call Us</p>
                 <h5>For catering services:</h5>
                 <h5><a href = "mailto: dshop.cater@gmail.com">dshop.cater@gmail.com<a>.</h5>

@@ -30,14 +30,17 @@ body {
 
 
 .title {
-    font-family: cursive;
+    color: #F4CFDF;
+    text-shadow: -3px 0 #e382ac, 0 3px #e382ac, 3px 0 #e382ac, 0 -3px #e382ac;
+    font-family: 'cookie';
     font-weight: 800;
-    font-size: 40px;
+    font-size: 50px;
     line-height: 60px;
-    padding-bottom: 10px;
+    padding: 10px 0;
 }
 
 h3 {
+    color: #e382ac;
     font-family: monospace;
     letter-spacing: 2px;
     padding-top: 20px;
@@ -45,14 +48,23 @@ h3 {
 }
 
 h5, a {
-    color: white;
-    font-family: monospace;
+    color: #e382ac;
+    font-family: "century gothic";
     font-size: 15px;
+    text-shadow: none;
 }
 
 .icon-img {
     height: 50px;
-    width: 50px;
+    width: 50px;  
+}
+.circle{
+    height: auto;
+    border: 1px solid #e382ac;
+    background-color: #e382ac;
+    padding: 2px;
+    border: 5px dotted white;
+    text-align: center;
 }
 
 .main {
@@ -74,19 +86,21 @@ h5, a {
 
 .card {
     float: left;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.7); 
+    box-shadow: 0 4px 8px 0 rgba(255,255,255,0.4); 
+    border: 8px double #e382ac;
+    border-radius: 5px;
     padding: 50px;
     text-align: center;
-    background-color: rgb(0 0 0 / 66%);
+    background-color: rgb(247 246 207 / 100%);
     margin: 50px 30px;
-    border-radius: 2px;
+    border-radius: 5px;
     width: 300px;
     height: 450px;
-    color: #f1f5f9;
+    
     text-decoration: none;
     background-image:
-      repeating-linear-gradient(#cccccc1a 0 3px, transparent 1px 100%),
-      repeating-linear-gradient(90deg, #cccccc1a 0 1px, transparent 1px 100%);
+      repeating-linear-gradient(white 0 3px, transparent 1px 100%),
+      repeating-linear-gradient(90deg, white 0 1px, transparent 1px 100%);
     background-size: 30px 30px;
 }
 
