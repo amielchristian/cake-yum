@@ -62,7 +62,7 @@
                 <p class="title">Services</p>
                 <h5>Various pastries, cakes, and beverages will be available in the shop. 
                     In some cases, catering and deliveries will also be offered. 
-                    For further inquires, please email us at <i><u>dshop@gmail.com</u></i>.
+                    For further inquires, please email us at <a href = "mailto: dshop@gmail.com">dshop@gmail.com<a>.
                 </h5>
             </div>
 
@@ -77,10 +77,12 @@
 
             <div class="card">
                 <img class="icon-img" src="shop-images/call-icon.png">
-                <p class="title">Contact Us</p>
-                <h5>
-                    dont hehe jk wala pa me malagay hehe
-                </h5>
+                <p class="title">Call Us</p>
+                <h5>For catering services:</h5>
+                <h5><a href = "mailto: dshop.cater@gmail.com">dshop.cater@gmail.com<a>.</h5>
+                            <br>
+                <h5>Visit us at our physical store:</h5>
+                <h5>España Blvd, Sampaloc, Manila, 1008 Metro Manila</h5>
             </div>
 
         </div>
