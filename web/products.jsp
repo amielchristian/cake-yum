@@ -20,7 +20,7 @@
 
         <%
             /*
-        Cache Scriptlet
+            Cache Scriptlet
              */
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
             response.setHeader("Pragma", "no-cache");
@@ -52,7 +52,8 @@
                                 out.println("</a>");
                             }
                         }
-                    %>
+                    }
+                %>
             </div>
     </body>
 </html>
