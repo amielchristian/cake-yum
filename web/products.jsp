@@ -35,21 +35,22 @@
 
         <div class="main">
             <div class="products-container">
-                <%                    
-                    String path = getServletContext().getRealPath("/products");
-                    File directory = new File(path);
-                    if (directory.isDirectory()) {
-                        String[] files = directory.list();
-                        for (String file : files) {
-                            String formattedName = ProductsModel.formatName(file);
-                            String price = ProductsModel.generatePrice(new File(path + "\\" + file + "\\price.txt")); //temporary
-                            out.println("<a href =\"Products?name=" + file + "\" class=\"card\">");
-                            out.println("<img src=\"products/" + file + "/" + file + ".jpg\">");
-                            out.println("<description>");
-                            out.println("<h2>" + formattedName + "</h2>");
-                            out.println("<h3>" + price + "</h3>");
-                            out.println("</description>");
-                            out.println("</a>");
+                    <%                        
+                        String path = getServletContext().getRealPath("/products");
+                        File directory = new File(path);
+                        if (directory.isDirectory()) {
+                            String[] files = directory.list();
+                            for (String file : files) {
+                                String formattedName = ProductsModel.formatName(file);
+                                String price = ProductsModel.generatePrice(new File(path + "\\" + file + "\\price.txt")); //temporary
+                                out.println("<a href =\"Products?name=" + file + "\" class=\"card\">");
+                                out.println("<img src=\"products/" + file + "/" + file + ".jpg\">");
+                                out.println("<description>");
+                                out.println("<h2>" + formattedName + "</h2>");
+                                out.println("<h3>" + price + "</h3>");
+                                out.println("</description>");
+                                out.println("</a>");
+                            }
                         }
                     }
                 %>
