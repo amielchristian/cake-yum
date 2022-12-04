@@ -34,7 +34,7 @@
         <!-- END OF HEADER -->
 
         <div class="main">
-            <div class="container">
+            <div class="products-container">
                     <%                        
                         String path = getServletContext().getRealPath("/products");
                         File directory = new File(path);

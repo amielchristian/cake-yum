@@ -47,7 +47,7 @@ h3 {
     font-size: 30px;
 }
 
-h5, a {
+.card h5, .card a {
     color: #e382ac;
     font-family: "century gothic";
     font-size: 15px;
