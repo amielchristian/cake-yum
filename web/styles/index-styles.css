@@ -1,0 +1,209 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 12 4, 22, 2:21:33 AM
+    Author     : Patricia Denise
+*/
+
+body {
+    overflow: auto;
+    background: linear-gradient(315deg, #f4cfdf 3%, #b6d8f2 38%, #f7f6cf 68%, #d9b7c6 98%);
+    animation: gradient 15s ease infinite;
+    background-size: 300% 300%;
+    background-attachment: fixed;
+}
+
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+
+.title {
+    font-family: cursive;
+    font-weight: 800;
+    font-size: 40px;
+    line-height: 60px;
+    padding-bottom: 10px;
+}
+
+h3 {
+    font-family: monospace;
+    letter-spacing: 2px;
+    padding-top: 20px;
+    font-size: 30px;
+}
+
+h5 {
+    font-family: monospace;
+    font-size: 20px;
+}
+
+.icon-img {
+    height: 50px;
+    width: 50px;
+}
+
+.main {
+    padding: 30px 150px;
+}
+
+.block {
+    margin-top: 30px;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.card {
+    float: left;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.7); 
+    padding: 50px;
+    text-align: center;
+    background-color: rgb(0 0 0 / 66%);
+    margin: 50px 30px;
+    border-radius: 2px;
+    width: 300px;
+    height: 600px;
+    color: #f1f5f9;
+    text-decoration: none;
+    background-image:
+      repeating-linear-gradient(#cccccc1a 0 3px, transparent 1px 100%),
+      repeating-linear-gradient(90deg, #cccccc1a 0 1px, transparent 1px 100%);
+    background-size: 30px 30px;
+}
+
+img {
+    width: 100%;
+}
+
+fieldset{
+    display: block;
+    border: none;
+    width: 100%;
+}
+
+
+
+/*top of the page*/
+
+.bg {
+    height: 100%;
+    background-image: url(../shop-images/image-2.jpg);
+    background-size: cover;
+    border-radius: 20px;
+    pddiong: 10px;
+    background-repeat: repeat-x;
+    animation: animatedBackground 15s linear alternate infinite;
+}
+
+@keyframes animatedBackground {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 50% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.flyinTxtCont {
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-left: 2em;
+}
+.flyIn {
+    color:#fff;    
+    text-transform:uppercase;
+    line-height:1.2em;
+    position:relative;
+}
+.lineOne {
+    transition-delay:.2s;
+    transition:.4s ease in;
+    animation: txtFlyIn .3s linear;
+}
+.lineTwo {
+    transition-delay:.4s;
+    transition:.6s ease in;
+    animation: txtFlyIn .6s linear;
+}
+.lineThree {
+    transition-delay:.6s;
+    transition:.8s ease in;
+    animation: txtFlyIn .9s linear;
+}
+.lineOne, .lineTwo, .lineThree {
+    font-family: ui-sans-serif;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    font-size:110px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+.lineFour {
+    font-family: monospace;
+    font-style: italic;
+    font-weight: bolder; 
+    letter-spacing: 4px;
+    transition-delay:2s;
+    transition:2s ease in;
+    animation: fadeIn 2s linear;
+    width: 100%;
+    background-color:#f7f6cf;
+    display:inline-block;
+    color:#5784ba;
+    box-size:border-box;
+    max-width:63%;
+    max-width: 22em;
+    font-size: 32px;
+    padding: .2em .5em;
+    margin-top: 30px;
+}
+@keyframes fadeIn{
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+}
+@keyframes txtFlyIn{
+    0% {
+        transform:translateX(-100%);
+    }
+    100% {
+        transform:translateX(0%);
+    }
+}

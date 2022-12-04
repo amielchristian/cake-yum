@@ -10,22 +10,79 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home</title>
-        <link rel="stylesheet" href="styles/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Mogra&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="styles/index-styles.css">
     </head>
     <body>
         <%
-        /*
+            /*
         Cache Scriptlet
-        */
+             */
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
             response.setHeader("Pragma", "no-cache");
             response.setHeader("Expires", "0");
-            
+
             session.setAttribute("invalidCredentials", false);
         %>
-        
+
         <!-- HEADER -->
         <%@ include file = "header.jsp" %>
         <!-- END OF HEADER -->
+
+
+        <div class="main">
+            <div class="block">
+                <fieldset>
+                    <div class="bg">
+                        <div class="flyinTxtCont">
+                            <div class="flyIn lineOne">You</div>
+                            <div class="flyIn lineTwo">Deserve a</div>
+                            <div class="flyIn lineThree">Dessert</div>
+                            <div class="flyIn lineFour">idk what to put hereee</div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="card">
+                <img class="icon-img" src="shop-images/clock-icon.png">
+                <p class="title">Open Hours</p>
+
+                <h3>Weekdays</h3>
+                <h5>9:00 am - 10:00 pm</h5>
+
+                <h3>Weekends</h3>
+                <h5>8:00 am - 11:30 pm</h5>
+            </div>
+
+            <div class="card">
+                <img class="icon-img" src="shop-images/services-icon.png">
+                <p class="title">Services</p>
+                <h5>Various pastries, cakes, and beverages will be available in the shop. 
+                    In some cases, catering and deliveries will also be offered. 
+                    For further inquires, please email us at <i><u>dshop@gmail.com</u></i>.
+                </h5>
+            </div>
+
+            <div class="card">
+                <img class="icon-img" src="shop-images/team-icon.png">
+                <p class="title">Team</p>
+                <h5>
+                    The four people behind this amaaaazingg shop are Charles Joaquin, Amiel Mala-ay, Patricia Poblete and Ann Salazar. 
+                    They are all taking Bachelor of Science in Computer Science at the University of Santo Tomas.
+                </h5>
+            </div>
+
+            <div class="card">
+                <img class="icon-img" src="shop-images/call-icon.png">
+                <p class="title">Contact Us</p>
+                <h5>
+                    dont hehe jk wala pa me malagay hehe
+                </h5>
+            </div>
+
+        </div>
     </body>
 </html>
