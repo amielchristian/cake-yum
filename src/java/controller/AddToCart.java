@@ -4,8 +4,9 @@
  */
 package controller;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,13 +14,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Product;
-import model.Users;
 
 /**
  *
  * @author chris
  */
-public class Login extends HttpServlet {
+public class AddToCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,26 +34,34 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-
-            Users u = new Users();
-            File credentialsFile = new File(getServletContext().getRealPath("/login-credentials.txt"));
-            Map<String, String> loginCredentials = u.getLoginCredentials(credentialsFile);
             
-            if (loginCredentials.containsKey(username) && password.equals(loginCredentials.get(username)))  {
-                HttpSession session = request.getSession();
-                session.setAttribute("username", username);
-                session.setAttribute("orderCounter", 1);
-                session.setAttribute("order-"+session.getAttribute("orderCounter"), new ArrayList<Product>());
-                
-                response.sendRedirect("index.jsp");
+            // goes to login page if not logged in
+            if (request.getSession(false).getAttribute("username") == null) {
+                RequestDispatcher view = request.getRequestDispatcher("login.jsp");
+                out.println("<p>You must log in first.</p>");
+                view.include(request, response);
             }
             else    {
-                // this shows an error message after entering an invalid username or password
-                HttpSession session = request.getSession();
-                session.setAttribute("invalidCredentials", true);
-                response.sendRedirect("login.jsp");
+                // get array list from session, if existent
+                HttpSession session = request.getSession(false);
+                ArrayList orders = (ArrayList)session.getAttribute("order-"+session.getAttribute("orderCounter"));
+
+                // generate product
+                String name = (String)request.getParameter("name");
+                String price = (String)request.getParameter("price");
+                String quantity = (String)request.getParameter("quantity");
+
+                Product product = new Product(name, Double.parseDouble(price), Integer.parseInt(quantity));
+                // This for-loop removes products with the same name to avoid duplicates.
+                for (int i = 0; i < orders.size(); i++) {
+                    if (((Product)orders.get(i)).getName().equals(name))    {
+                        orders.remove(orders.get(i));
+                    }
+                }
+                orders.add(product);
+
+                session.setAttribute("order-"+session.getAttribute("orderCounter"), orders);
+                response.sendRedirect("cart.jsp");
             }
         }
     }

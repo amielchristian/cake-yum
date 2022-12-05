@@ -42,11 +42,15 @@
                                     <img class="img" src="<%=getServletContext().getContextPath() + "/products/" + request.getAttribute("file")%>/<%=request.getAttribute("file")%>.jpg">
                                     </div>
                                     <div class="cont">
-                                        <div class="quantity">
-                                            <label>Quantity</label>
-                            <input type="number" name="quantity" min="1" max="10" value="1"/>
-                                        </div>
-                                        <button class="button">Add to Cart</button>
+                                        <form action="AddToCart">
+                                            <input type="hidden" name="name" value="<%= request.getAttribute("file") %>">
+                                            <input type="hidden" name="price" value="<%= ((String)request.getAttribute("price")).replace("Price: &#8369 ", "") %>">
+                                            <div class="quantity">
+                                                <label>Quantity</label>
+                                                <input type="number" name="quantity" min="1" max="10" value="1"/>
+                                            </div>
+                                            <button class="button">Add to Cart</button>
+                                        </form>
                                     </div> 
 
 
