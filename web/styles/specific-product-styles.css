@@ -1,0 +1,195 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 12 2, 22, 7:49:11 AM
+    Author     : CLARISSE Salazar
+*/
+
+
+body {
+   
+    
+    font-family: "century gothic", sans-serif;
+    font-size: 30px;
+    color: #e382ac;
+    margin: 0;
+    text-align: center;
+    background: linear-gradient(135deg, #F4CFDF, #B6D8F2, #F4CFDF);
+}
+
+
+
+.bg-pic{
+   
+    display: flex;
+   justify-content: center;
+   
+    padding: 10px;
+    
+    
+    
+
+}
+
+
+.container {
+
+    width: 100%;
+    
+    background-color:#F7f6cf ;
+    padding: 20px;
+    border: 5px dotted #e382ac;
+    border-radius: 5px;
+    color: black;
+   
+
+}
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin: 0 -16px;
+}
+.big-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -ms-flex: 75%;
+    flex: 75%;
+}
+
+.box {
+    -ms-flex: 50%;
+    flex: 50%;
+    padding: 0 16px;
+}
+.img {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.form, .row,.big-box, .box, .container, .cont{
+    box-sizing: border-box;
+}
+.form{
+    width: 90%;
+    height: 100%;
+    margin: 50px;
+    
+   
+
+}
+.cont{
+    
+    background-color: rgba(255, 255, 255, .6);
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;;
+    color: black;
+    
+}
+.border{
+    background-color: rgba(255, 255, 255, .6);
+     margin-left: 20px;
+     margin-right: 20px;
+    border: 2px solid #e382ac;
+    padding: 20px;
+   border-bottom: none;
+   
+   
+    
+}
+
+.big{
+
+padding: 10px  0;
+    margin-bottom: 10px;
+    
+}
+.whole{
+    padding: 10px 0;
+}
+
+.bottom{
+    border-bottom: 2px solid #e382ac;
+}
+.price{
+    color: #F4CFDF;
+    font-size: 40px;
+    font-weight: bold;
+     text-shadow: -2px 0 #e382ac, 0 2px #e382ac, 2px 0 #e382ac, 0 -2px #e382ac;
+}
+.quantity{
+    font-family:"century gothic";
+    font-size: 20px;
+    color: #e382ac;
+    margin: 3px;
+    
+}
+input[type="number"] {
+  text-align: center;
+  color: #e382ac;
+  font-size: 17px;
+  border: 1px solid #e382ac;
+  margin-left: 5px;
+}
+
+.title{
+    font-size: 60px;
+    font-family: 'Cookie';
+    color: #F4CFDF;
+    text-shadow: -2px 0 #e382ac, 0 2px #e382ac, 2px 0 #e382ac, 0 -2px #e382ac;
+}
+.description{
+    padding-left: 10%;
+    padding-right: 10%;
+    color: #e382ac;
+    font-family: "century gothic";
+    text-align: justify;
+  text-justify: inter-word;
+  font-size: 20px;
+  
+  
+  
+}
+.button {
+    background-color:#F4CFDF;
+    color: #e382ac;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    width: 50%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+    font-family:"century gothic";
+    border: 2px solid #e382ac;
+}
+.button:hover {
+    background-color: #ecacc8;
+}
+
+
+
+@media (prefers-reduced-motion: no-preference) {
+    * {
+        scroll-behavior: smooth;
+    }
+}
+
+/* Responsive layout - when the screen is less than 900px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 1000px) {
+    .navbar {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .main {
+        padding: 30px 100px;
+    }
+}

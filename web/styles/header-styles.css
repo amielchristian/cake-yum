@@ -1,0 +1,99 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Dec 4, 2022, 9:12:34 PM
+    Author     : Charles
+*/
+
+/* Custom properties/variables  */
+:root {
+    --main-yellow: #F7F6CF;
+    --main-turquoise: #B6D8F2;
+    --main-linen: #F4CFDF;
+    --main-blue-steel: #5784BA;
+    --main-blue-sky: #9AC8EB;
+    --main-serenade: #FAE7D9;
+    --main-white: #F1F5F9;
+}
+
+/* Base reset */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* box-sizing and font sizing */
+*,*::before,*::after {
+    box-sizing: inherit;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+    background-color: var(--main-white);
+}
+
+/* Base styles */
+body {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+/* header */
+header {
+    font-family: 'Lato', sans-serif;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--main-blue-sky);
+}
+
+.logo {
+    width: 100%;
+    font-family: 'Mogra', cursive;
+    color: var(--main-white);
+    border-bottom: 1px solid var(--main-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#logo-img {
+    width: 6%;
+    height: auto;
+}
+
+#logo-name {
+    font-weight: 900;
+    font-size: 5vw;
+    outline: 3px black;
+}
+
+.nav-ul {
+    display: flex;
+    margin-right: 2rem;
+}
+
+.nav-list {
+    list-style: none;
+}
+
+.nav-item {
+    display: block;
+    font-size: 2rem;
+    padding: 2rem;
+    color: var(--main-white);
+    text-decoration: none;
+}
+
+.nav-item:hover {
+    color: var(--main-blue-steel);
+}
