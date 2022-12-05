@@ -36,10 +36,11 @@
             else    {
                 ArrayList cartContents = (ArrayList)session.getAttribute("order-"+session.getAttribute("orderCounter"));
                 if (cartContents.isEmpty())   {
-                    out.println("<h1>It doesn't seem like you have anything in your cart yet.</h1>");
+                    out.println("<p>It doesn't seem like you have anything in your cart right now.</p>");
                 }
 
                 else    {
+                    out.println("<h1>Your Cart</h1>");
                     out.println("<form name=\"remove\" id=\"remove\" action=\"RemoveFromCart\"></form>");
                     for (int i = 0; i < cartContents.size(); i++)   {
                         Product product = (Product)cartContents.get(i);
@@ -53,8 +54,7 @@
                         out.println("</div><br>");
                     }
 
-
-                    out.println("<form><input type=\"button\" value=\"Checkout\"</form>");
+                    out.println("<form action=\"Checkout\"><input type=\"submit\" value=\"Checkout\"></form>");
                 }
             }
         %>
