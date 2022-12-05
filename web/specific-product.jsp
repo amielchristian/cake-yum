@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Specific Dessert Product</title>
         <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet'>
@@ -43,7 +44,7 @@
                                     </div>
                                     <div class="cont">
                                         <div class="quantity">
-                                            <label>Quantity</label>
+                                            <label class="quantity">Quantity</label>
                             <input type="number" name="quantity" min="1" max="10" value="1"/>
                                         </div>
                                         <button class="button">Add to Cart</button>
