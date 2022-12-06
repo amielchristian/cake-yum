@@ -26,13 +26,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .no-item {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Fredoka One', cursive;
     margin: 30px auto;
     width: 100%;
 }
 
 .no-item * {
-    color: var(--main-black);
+    color: var(--main-pink);
     display: flex;
     justify-content: center;
     align-items: center;
