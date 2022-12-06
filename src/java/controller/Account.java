@@ -35,7 +35,9 @@ public class Account extends HttpServlet {
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
             response.setHeader("Pragma", "no-cache");
             response.setHeader("Expires", "0");
-            
+            out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"styles/account-styles.css\">");
+            out.println("<link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet'>");
+                    
             RequestDispatcher view = request.getRequestDispatcher("account.jsp");
             view.include(request, response);
             
@@ -45,9 +47,11 @@ public class Account extends HttpServlet {
             }
             if (session.getAttribute("username") != null)   {
                 String username = (String)session.getAttribute("username"); 
-                out.println("<h1>"+username+"'s Account</h1>");
+                out.println("<div class=\"main\">");
+                out.println("<div class=\"dot\"></div>");
+                out.println("<h1 class=\"name\">"+username+"'s Account</h1>");
+                out.println("<h3 class=\"account\">Account Details</h3>");
                 out.println("<table>");
-                    out.println("<tr><th>Account Details</th></tr>");
                     out.println("<tr>");
                         out.println("<td>Name: </td>");
                         out.println("<td>");
@@ -77,7 +81,8 @@ public class Account extends HttpServlet {
                     out.println("</tr>");
                 out.println("</table>");
 
-                out.println("<h4><a href=\"Logout\">Logout</a></h4>");
+                out.println("<h4><a class=\"logout\" href=\"Logout\">Logout</a></h4>");
+                out.println("</div>");
             }
         }
     }
