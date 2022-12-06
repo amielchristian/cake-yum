@@ -15,7 +15,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
     --main-blue-steel: #5784BA;
     --main-blue-sky: #9AC8EB;
     --main-serenade: #FAE7D9;
-    --main-white: #F0F0F0;
+    --main-white: #F1F5F9;
 }
 
 /* Base reset */
@@ -32,7 +32,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 html {
     box-sizing: border-box;
     font-size: 62.5%;
-    background-color: var(--main-serenade);
+    background-color: var(--main-white);
 }
 
 /* Base styles */
@@ -61,52 +61,3 @@ h1 {
     margin: 0 auto;
     padding: 20px 10px;
 }
-
-/* header */
-header {
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 0px 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    background-color: var(--main-blue-steel);
-}
-
-.logo {
-    width: 100%;
-    font-family: 'Mogra', cursive;
-    color: var(--main-serenade);
-    border-bottom: 1px solid var(--main-serenade);
-}
-
-.logo h1 {
-    text-align: center;
-    font-size: 10vw;
-}
-
-.nav-list {
-    display: flex;
-    margin-right: 2rem;
-}
-
-.nav-list li {
-    list-style: none;
-}
-
-.nav-list a {
-    display: block;
-    font-size: 2rem;
-    padding: 2rem;
-    color: var(--main-serenade);
-    text-decoration: none;
-}
-
-.nav-list a:hover {
-    color: var(--main-yellow);
-}
-
-
-

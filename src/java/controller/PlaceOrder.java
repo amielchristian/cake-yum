@@ -4,22 +4,22 @@
  */
 package controller;
 
-import java.io.*;
-import java.util.*;
-import javax.servlet.RequestDispatcher;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Product;
-import model.Users;
 
 /**
  *
  * @author chris
  */
-public class Login extends HttpServlet {
+public class PlaceOrder extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,27 +34,24 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-
-            Users u = new Users();
-            File credentialsFile = new File(getServletContext().getRealPath("/login-credentials.txt"));
-            Map<String, String> loginCredentials = u.getLoginCredentials(credentialsFile);
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet PlaceOrder</title>");            
+            out.println("</head>");
+            out.println("<body>");
             
-            if (loginCredentials.containsKey(username) && password.equals(loginCredentials.get(username)))  {
-                HttpSession session = request.getSession();
-                session.setAttribute("username", username);
-                session.setAttribute("orderCounter", 1);
-                session.setAttribute("order-"+session.getAttribute("orderCounter"), new ArrayList<Product>());
-                
-                response.sendRedirect("index.jsp");
-            }
-            else    {
-                // this shows an error message after entering an invalid username or password
-                HttpSession session = request.getSession();
-                session.setAttribute("invalidCredentials", true);
-                response.sendRedirect("login.jsp");
-            }
+            HttpSession session = request.getSession(false);
+            int ctr = (Integer)session.getAttribute("orderCounter");
+            session.setAttribute("orderTime-"+ctr, LocalDateTime.now());
+            session.setAttribute("orderCounter", ctr+1);
+            session.setAttribute("order-"+session.getAttribute("orderCounter"), new ArrayList<Product>());
+            
+            response.sendRedirect("purchases.jsp");
+            
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
