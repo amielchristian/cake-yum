@@ -1,6 +1,6 @@
 <%-- 
-    Document   : error404
-    Created on : Nov 24, 2022, 11:19:49 AM
+    Document   : error401
+    Created on : Dec 7, 2022, 4:40:52 AM
     Author     : Charles
 --%>
 
@@ -22,9 +22,9 @@
             <!--TODO change src-->
             <img src="http://localhost:8080/shopping-cart/temp-image-folder/error-cupcake.png" alt="eaten-cupcake" id="error-cupcake"/>
             <div class="error-text">
-                <h1>500</h1>
+                <h1>401</h1>
                 <h2>ERROR</h2>
-                <p>Oops! Something went wrong</p>
+                <p>Oops! It looks like you've been logged out.</p>
             </div>
         </div>
     </body>

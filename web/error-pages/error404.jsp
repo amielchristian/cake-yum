@@ -24,7 +24,7 @@
             <div class="error-text">
                 <h1>404</h1>
                 <h2>ERROR</h2>
-                <p>Oops! We can't find this page</p>
+                <p>Oops! We can't find this page.</p>
             </div>
         </div>
     </body>

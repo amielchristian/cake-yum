@@ -43,7 +43,7 @@ public class Account extends HttpServlet {
             
             HttpSession session = request.getSession();
             if (session.getAttribute("username") == null)   {
-                out.println("You've logged out.");
+                response.sendRedirect("/shopping-cart/error-pages/error401.jsp");
             }
             if (session.getAttribute("username") != null)   {
                 String username = (String)session.getAttribute("username"); 
