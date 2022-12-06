@@ -12,11 +12,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 :root {
     --main-yellow: #F7F6CF;
     --main-turquoise: #B6D8F2;
+    --main-pink: #e382ac;
     --main-linen: #F4CFDF;
     --main-blue-steel: #5784BA;
     --main-blue-sky: #9AC8EB;
     --main-serenade: #FAE7D9;
     --main-white: #F1F5F9;
+    --main-black: #1F1F21;
 }
 
 /* Base reset */
@@ -34,7 +36,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 html {
     box-sizing: border-box;
     font-size: 62.5%;
-    background-color: var(--main-white);
 }
 
 /* Base styles */
