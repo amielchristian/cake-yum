@@ -19,6 +19,7 @@
         <div class="logo">
             <img src="temp-image-folder/cupcake.png" alt="logo" id="logo-img"/>
             <h1 id="logo-name">Dessert Shop</h1>
+            <img src="temp-image-folder/cupcake.png" alt="logo" id="logo-img"/>
         </div>
         <nav class="navbar">
             <ul class="nav-ul">

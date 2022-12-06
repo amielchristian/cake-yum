@@ -1,3 +1,4 @@
+
 /*
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
@@ -11,15 +12,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 :root {
     --main-yellow: #F7F6CF;
     --main-turquoise: #B6D8F2;
+    --main-pink: #e382ac;
     --main-linen: #F4CFDF;
     --main-blue-steel: #5784BA;
     --main-blue-sky: #9AC8EB;
     --main-serenade: #FAE7D9;
     --main-white: #F1F5F9;
+    --main-black: #1F1F21;
 }
 
 /* Base reset */
 * {
+    text-align: center;
     margin: 0;
     padding: 0;
 }
@@ -32,7 +36,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 html {
     box-sizing: border-box;
     font-size: 62.5%;
-    background-color: var(--main-white);
 }
 
 /* Base styles */
@@ -43,32 +46,34 @@ body {
 }
 
 /* header */
-header {
+#header {
+    font-size: 40px;
     font-family: 'Lato', sans-serif;
-    top: 0;
-    left: 0;
     width: 100%;
-    padding: 0px 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
     background-color: var(--main-blue-sky);
 }
 
 .logo {
+    padding-top: 20px;
     width: 100%;
     font-family: 'Mogra', cursive;
     color: var(--main-white);
-    border-bottom: 1px solid var(--main-white);
     display: flex;
     align-items: center;
     justify-content: center;
+    border-bottom: 1px solid var(--main-white);
 }
+
+ h1#logo-name {
+        font-size: 250%;
+    }
 
 #logo-img {
     width: 6%;
     height: auto;
+    padding-bottom: 10px;
 }
 
 #logo-name {
@@ -78,8 +83,13 @@ header {
 }
 
 .nav-ul {
+    font-weight: bolder;
+    padding: 0 50px;
+    background-color: var(--main-blue-sky);
     display: flex;
-    margin-right: 2rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .nav-list {
@@ -87,7 +97,7 @@ header {
 }
 
 .nav-item {
-    display: block;
+    display: flex;
     font-size: 2rem;
     padding: 2rem;
     color: var(--main-white);
@@ -96,4 +106,46 @@ header {
 
 .nav-item:hover {
     color: var(--main-blue-steel);
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+@media screen and (max-width: 700px) {
+    .nav-ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: pink;
+    }
+
+    /* header */
+
+    #header {
+        font-size: 100%;
+        padding: 10px 0;
+    }
+    .logo {
+        padding: 10px;
+        border: none;
+    }
+
+
+    img#logo-img {
+        width: 10%;
+        margin: 10px;
+    }
+    
+    .logo {
+        width: 100%;
+        font-family: 'Mogra', cursive;
+        color: var(--main-white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }

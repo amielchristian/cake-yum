@@ -1,0 +1,121 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Dec 7, 2022, 3:54:51 AM
+    Author     : Charles
+*/
+
+.checkout-body  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkout-container {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Fredoka One', cursive;
+    color: var(--main-pink);
+    font-size: 1vw;
+    margin: 30px auto;
+    width: 70%;
+    padding: 20px;
+    background-color: var(--main-yellow);
+    border-radius: 20px;
+    box-shadow: -3px 3px 5px 2px #00000033;
+}
+
+.container-title {
+    font-size: 4vw;
+    font-family: 'Cookie';
+    color: var(--main-linen);
+    text-shadow: -2px 0 #e382ac, 0 2px #e382ac, 2px 0 #e382ac, 0 -2px #e382ac;
+}
+
+.order {
+    margin: auto;
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #FFFFFF99;
+}
+
+.table {
+    width: 90%;
+}
+
+.total-row {
+    border-top: 1px solid var(--main-pink);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    font-size: 1.3vw;
+}
+
+td {
+    font-size: 1vw;
+}
+
+.item-name {
+    text-align: left;
+}
+
+.item-quantity {
+    text-align: center;
+}
+
+.item-price {
+    text-align: center;
+}
+
+.total-title {
+    text-align: right;
+}
+
+.order-price {
+    text-align: center;
+}
+
+.product-column {
+    width: 70%;
+}
+
+.quantity-column {
+    width: 10%
+}
+
+.price-column {
+    width: 20%
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.order-button {
+    background-color: #F4CFDF;
+    color: #e382ac;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    width: 50%;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: bold;
+    font-family: "century gothic";
+    border: 2px solid #e382ac;
+}

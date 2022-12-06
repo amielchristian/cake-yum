@@ -1,0 +1,157 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Dec 6, 2022, 7:44:45 PM
+    Author     : Charles
+*/
+
+.cart-body  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--main-black);
+}
+
+.cart-container{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Lato', sans-serif;
+    margin: 30px auto;
+    width: 70%;
+    background-color: var(--main-yellow);
+    border-radius: 20px;
+    box-shadow: -3px 3px 5px 2px #00000033;
+}
+
+.no-item {
+    font-family: 'Fredoka One', cursive;
+    margin: 30px auto;
+    width: 100%;
+}
+
+.no-item * {
+    color: var(--main-pink);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-list {
+    font-family: 'Lato', sans-serif;
+    margin: 30px auto;
+    width: 100%;
+}
+
+.checkout-list {
+    background-color: var(--main-linen);
+    border-radius: 0px 0px 20px 20px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-header{
+    margin: auto;
+    width: 90%;
+    height: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    font-family: 'Fredoka One', cursive;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--main-black);
+}
+
+.cart-heading {
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--main-black);
+}
+
+.cart-item {
+    margin: auto;
+    width: 90%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--main-black);
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 240px;
+}
+
+.product-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    background-color: var(--main-linen);
+    padding: 10px;
+}
+
+.item-title {
+    text-align: center;
+    padding-top: 5px;
+    line-height: 20px;
+    font-family: 'Fredoka One', cursive;
+}
+
+.item-link {
+    text-decoration: none;
+    color: var(--main-black);
+}
+
+.remove-button {
+    background-color: var(--main-black);
+    border: none;
+    color: var(--main-yellow);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 100px;
+    font-family: 'Fredoka One', cursive;
+}
+
+.remove-button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.checkout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkout-button {
+    background-color: var(--main-black);
+    border: none;
+    color: var(--main-white);
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 100px;
+    font-family: 'Fredoka One', cursive;
+}
+
+.checkout-button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}

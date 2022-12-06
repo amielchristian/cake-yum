@@ -10,8 +10,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
+        <link rel="stylesheet" href="styles/login-styles.css">
     </head>
     <body>
+        
+        <div class="center">
+        <div class="container">
+            <div class="invalid">
         <%
             // This scriptlet prints out an error message when invalid login credentials are entered.
             if ((Boolean)session.getAttribute("invalidCredentials")) {
@@ -21,10 +26,19 @@
                 session.invalidate();
             }
         %>
+            </div>
         <form action="Login" method="post">
-            Enter username: <input type="text" name="username"><br>
-            Enter password <input type="password" name="password"><br>
-            <input type="submit" value="Login">
+            
+            <label>Username:</label>
+                <input type="text" name="username"><br>
+                <label>Password:</label> 
+                <input type="password" name="password"><br>
+            <input class="button" type="submit" value="Login">
         </form>
+            
+        </div>
+            
+        </div>
+       
     </body>
 </html>
