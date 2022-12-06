@@ -1,0 +1,109 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Dec 7, 2022, 1:51:42 AM
+    Author     : Charles
+*/
+
+.purchases-body  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.purchases-container {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Fredoka One', cursive;
+    color: var(--main-pink);
+    font-size: 1vw;
+    margin: 30px auto;
+    width: 70%;
+    padding: 20px;
+    background-color: var(--main-yellow);
+    border-radius: 20px;
+    box-shadow: -3px 3px 5px 2px #00000033;
+}
+
+.container-title {
+    font-size: 4vw;
+    font-family: 'Cookie';
+    color: var(--main-linen);
+    text-shadow: -2px 0 #e382ac, 0 2px #e382ac, 2px 0 #e382ac, 0 -2px #e382ac;
+}
+
+.order {
+    margin: auto;
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: #FFFFFF99;
+}
+
+.order-heading {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.table {
+    width: 90%;
+}
+
+.total-row {
+    border-top: 1px solid var(--main-pink);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    font-size: 1.3vw;
+}
+
+td {
+    font-size: 1vw;
+}
+
+.item-name {
+    text-align: left;
+}
+
+.item-quantity {
+    text-align: center;
+}
+
+.item-price {
+    text-align: center;
+}
+
+.total-title {
+    text-align: right;
+}
+
+.order-price {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.product-column {
+    width: 70%;
+}
+
+.quantity-column {
+    width: 10%
+}
+
+.price-column {
+    width: 20%
+}
