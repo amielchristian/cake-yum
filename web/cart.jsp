@@ -13,7 +13,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Shopping Cart</title>
-        <link rel="stylesheet" href="styles/styles.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet"> 
+        <link href="styles/cart-styles.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <%
@@ -28,7 +32,8 @@
         <!-- HEADER -->
         <%@ include file = "header.jsp" %>
         <!-- END OF HEADER -->
-        
+        <div class="cart-body">
+        <div class="cart-container">
         <%
             if (session.getAttribute("username") == null)  {
                 response.sendRedirect("login.jsp");
@@ -36,27 +41,42 @@
             else    {
                 ArrayList cartContents = (ArrayList)session.getAttribute("order-"+session.getAttribute("orderCounter"));
                 if (cartContents.isEmpty())   {
+                    out.println("<div class=\"no-item\">");
                     out.println("<p>It doesn't seem like you have anything in your cart right now.</p>");
+                    out.println("</div>");
                 }
 
                 else    {
-                    out.println("<h1>Your Cart</h1>");
+                    out.println("<div class=\"cart-list\">");
+                    out.println("<div class=\"cart-header\">");
+                    out.println("<h1 class=\"cart-heading\">Your Cart</h1>");
+                    out.println("</div>");
                     out.println("<form name=\"remove\" id=\"remove\" action=\"RemoveFromCart\"></form>");
                     for (int i = 0; i < cartContents.size(); i++)   {
                         Product product = (Product)cartContents.get(i);
                     
-                        out.println("<div class=\"product\">");   
-                            out.println("<img width=\"200\" src=\"products/"+product.getName()+"/"+product.getName()+".jpg\">");
-                            out.println("<p><a href=\"Products?name="+product.getName()+"\">"+ProductsModel.formatName(product.getName())+"</a></p>");
-                            out.println("<p>Price per unit: &#8369 "+product.getPrice()+"</p>");
-                            out.println("<p>Quantity: "+product.getQuantity()+"</p>");
-                            out.println("<button form=\"remove\" name=\"remove\" value=\""+product.getName()+"\">Remove</button>");
+                        out.println("<div class=\"cart-item\">");
+                            out.println("<div class=\"product\">");
+                                out.println("<img class=\"product-image\" src=\"products/"+product.getName()+"/"+product.getName()+".jpg\">");
+                                out.println("<p class=\"item-title\"><a class=\"item-link\" href=\"Products?name="+product.getName()+"\">"+ProductsModel.formatName(product.getName())+"</a></p>");
+                            out.println("</div>");
+                            out.println("<p>&#8369 "+product.getPrice()+"</p>");
+                            out.println("<p>"+product.getQuantity()+"</p>");
+                            out.println("<button class=\"remove-button\" form=\"remove\" name=\"remove\" value=\""+product.getName()+"\">Remove</button>");
                         out.println("</div><br>");
                     }
-
-                    out.println("<form action=\"Checkout\"><input type=\"submit\" value=\"Checkout\"></form>");
+                    out.println("</div>");
+                    
+                    out.println("<div class=\"checkout-list\">");
+                    out.println("<div class=\"checkout-container\">");
+                    out.println("<form name=\"Checkout\" id=\"Checkout\" action=\"Checkout\"></form>");
+                    out.println("<button class=\"checkout-button\" form=\"Checkout\" name=\"Checkout\" value=\"Checkout\">Checkout</button>");
+                    out.println("</div>");
+                    out.println("</div>");
                 }
             }
         %>
+        </div>
+        </div>
     </body>
 </html>
