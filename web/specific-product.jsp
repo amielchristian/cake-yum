@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Specific Dessert Product</title>
         <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet'>
@@ -42,6 +43,8 @@
                                     <img class="img" src="<%=getServletContext().getContextPath() + "/products/" + request.getAttribute("file")%>/<%=request.getAttribute("file")%>.jpg">
                                     </div>
                                     <div class="cont">
+
+
                                         <form action="AddToCart">
                                             <input type="hidden" name="name" value="<%= request.getAttribute("file") %>">
                                             <input type="hidden" name="price" value="<%= ((String)request.getAttribute("price")).replace("Price: &#8369 ", "") %>">
