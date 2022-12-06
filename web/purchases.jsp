@@ -46,7 +46,9 @@
                 out.println("<div class=\"purchases-container\">");
                 
                 if (current == 0)   {
+                    out.println("<div class=\"no-item\">");
                     out.println("You haven't placed any orders yet.");
+                    out.println("<div");
                 }
                 else    {
                     out.println("<h1 class=\"container-title\">Previous Orders</h1>");

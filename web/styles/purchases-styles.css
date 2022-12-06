@@ -27,6 +27,20 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     box-shadow: -3px 3px 5px 2px #00000033;
 }
 
+.no-item {
+    font-family: 'Fredoka One', cursive;
+    text-align: center;
+    margin: 30px auto;
+    width: 100%;
+}
+
+.no-item * {
+    color: var(--main-pink);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .container-title {
     font-size: 4vw;
     font-family: 'Cookie';
