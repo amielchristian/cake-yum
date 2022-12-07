@@ -114,7 +114,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     color: var(--main-black);
 }
 
-.remove-button {
+.remove-button, .edit-button, .checkout-button {
     background-color: var(--main-black);
     border: none;
     color: var(--main-yellow);
@@ -123,11 +123,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border-radius: 100px;
+    border-radius: 10px;
     font-family: 'Fredoka One', cursive;
 }
 
-.remove-button:hover {
+.remove-button:hover, .checkout-button:hover, .edit-button:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
@@ -136,40 +136,4 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.checkout-button {
-    background-color: var(--main-black);
-    border: none;
-    color: var(--main-white);
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 100px;
-    font-family: 'Fredoka One', cursive;
-}
-
-.checkout-button:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-}
-
-.edit-button {
-    background-color: var(--main-black);
-    border: none;
-    color: var(--main-yellow);
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 100px;
-    font-family: 'Fredoka One', cursive;
-}
-
-.edit-button:hover {
-    transform: scale(1.1);
-    cursor: pointer;
 }
