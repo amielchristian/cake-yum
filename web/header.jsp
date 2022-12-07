@@ -18,7 +18,7 @@
     <header id="header">
         <div class="logo">
             <img src="images/logo/cupcake.png" alt="logo" id="logo-img"/>
-            <h1 id="logo-name">Dessert Shop</h1>
+            <h1 id="logo-name">CakeYum/h1>
             <img src="images/logo/cupcake.png" alt="logo" id="logo-img"/>
         </div>
         <nav class="navbar">
