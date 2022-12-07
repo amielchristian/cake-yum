@@ -210,6 +210,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     .remove-title, remove-column {
         display: none;
     }
+    
+    .top-cart-item {
+        width: 100%;
+        margin-top: 10px;
+    }
 
     .bottom-cart-item {
         padding-top: 30px;
@@ -223,5 +228,5 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     .remove-title, remove-column, .edit-title, edit-column {
         width: 30px;
     }
-    
+
 }
