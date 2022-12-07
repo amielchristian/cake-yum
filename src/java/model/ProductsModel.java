@@ -19,7 +19,7 @@ public class ProductsModel {
     public static String generatePrice(File path) throws FileNotFoundException, IOException   {
         BufferedReader br = new BufferedReader(new FileReader(path));
         
-        return "Price: &#8369 " + br.readLine();
+        return "Price: <b>&#8369</b>" + br.readLine();
     }
     
     

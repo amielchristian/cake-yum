@@ -71,7 +71,7 @@
                                 out.println("<img class=\"product-image\" src=\"products/"+product.getName()+"/"+product.getName()+".jpg\">");
                                 out.println("<p class=\"item-title\">"+ProductsModel.formatName(product.getName())+"</p>");
                             out.println("</div>");
-                            out.println("<p class=\"price-column\">&#8369 "+product.getPrice()+"</p>");
+                            out.println("<p class=\"price-column\"><b>&#8369</b>"+String.format("%.2f", (Double)product.getPrice())+"</p>");
                             out.println("<p class=\"quantity-column\">"+product.getQuantity()+"</p>");
                             out.println("</div>");
                             out.println("<div class=\"bottom-cart-item\">");

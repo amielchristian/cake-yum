@@ -77,13 +77,13 @@ public class Checkout extends HttpServlet {
                 out.println("<tr>");
                     out.println("<td class=\"item-name\">"+ProductsModel.formatName(product.getName())+"</td>");    
                     out.println("<td class=\"item-quantity\">"+product.getQuantity()+"</td>");
-                    out.println("<td class=\"item-price\">&#8369 "+(product.getPrice()*product.getQuantity())+"</td>");
+                    out.println("<td class=\"item-price\"><b>&#8369</b>"+String.format("%.2f", (product.getPrice()*product.getQuantity()))+"</td>");
                 out.println("</tr>");
             }
             
             out.println("<tr class=\"total-row\">");
             out.println("<td class=\"total-title\" colspan=\"2\">Total: </td>");
-            out.println("<td class=\"order-price\">&#8369 "+total+"</td>");
+            out.println("<td class=\"order-price\"><b>&#8369</b>"+String.format("%.2f", total)+"</td>");
             out.println("</tr>");
             out.println("</table>");
             out.println("</div>");

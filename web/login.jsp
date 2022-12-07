@@ -30,7 +30,7 @@
                 out.println("alert('Invalid username or password. Please try again.');");  
                 out.println("</script>");
             }
-            // Ensures invalidation when previous login attempt failed
+            // Ensures invalidation when redirected from other page
             if (request.getParameter("attemptedGuestAccess") != null)    {
                 out.println("<script type=\"text/javascript\">");  
                 out.println("alert('You must log in first.');");  
