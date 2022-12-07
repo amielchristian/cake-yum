@@ -37,7 +37,12 @@
         
         <%
             if (session.getAttribute("username") == null)  {
-                response.sendRedirect("login.jsp");
+                RequestDispatcher view = request.getRequestDispatcher("login.jsp");
+                
+                out.println("<script type=\"text/javascript\">");  
+out.println("alert('You must log in first.');");  
+out.println("</script>");
+                view.include(request, response);
             }
             else    {
                 int current = (Integer)session.getAttribute("orderCounter")-1;

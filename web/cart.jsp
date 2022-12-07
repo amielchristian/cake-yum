@@ -36,7 +36,12 @@
         <div class="cart-container">
         <%
             if (session.getAttribute("username") == null)  {
-                response.sendRedirect("login.jsp");
+                RequestDispatcher view = request.getRequestDispatcher("login.jsp");
+                
+                out.println("<script type=\"text/javascript\">");  
+out.println("alert('You must log in first.');");  
+out.println("</script>");
+                view.include(request, response);
             }
             else    {
                 ArrayList cartContents = (ArrayList)session.getAttribute("order-"+session.getAttribute("orderCounter"));
