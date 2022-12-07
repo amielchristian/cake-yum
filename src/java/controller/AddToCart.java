@@ -37,12 +37,7 @@ public class AddToCart extends HttpServlet {
             
             // goes to login page if not logged in
             if (request.getSession(false).getAttribute("username") == null) {
-                RequestDispatcher view = request.getRequestDispatcher("login.jsp");
-                
-                out.println("<script type=\"text/javascript\">");  
-out.println("alert('You must log in first.');");  
-out.println("</script>");
-                view.include(request, response);
+                response.sendRedirect("LoginRedirect");
             }
             else    {
                 // get array list from session, if existent

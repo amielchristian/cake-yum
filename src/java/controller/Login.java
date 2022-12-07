@@ -41,19 +41,17 @@ public class Login extends HttpServlet {
             File credentialsFile = new File(getServletContext().getRealPath("/login-credentials.txt"));
             Map<String, String> loginCredentials = u.getLoginCredentials(credentialsFile);
             
+            HttpSession session = request.getSession();
             if (loginCredentials.containsKey(username) && password.equals(loginCredentials.get(username)))  {
-                HttpSession session = request.getSession();
                 session.setAttribute("username", username);
                 session.setAttribute("orderCounter", 1);
                 session.setAttribute("order-"+session.getAttribute("orderCounter"), new ArrayList<Product>());
-                
+
                 response.sendRedirect("index.jsp");
             }
             else    {
-                // this shows an error message after entering an invalid username or password
-                HttpSession session = request.getSession();
-                session.setAttribute("invalidCredentials", true);
-                response.sendRedirect("login.jsp");
+                request.setAttribute("invalidLoginCredentials", "true");
+                response.sendRedirect("login.jsp?invalidLoginCredentials=true");
             }
         }
     }

@@ -19,20 +19,32 @@
         <%@ include file = "header.jsp" %>
         <!-- END OF HEADER -->
 
+        <%
+            // Invalidates session after returning to login screen
+            if (session.getAttribute("username")!=null)    {
+                session.invalidate();
+            }
+            // Ensures invalidation when previous login attempt failed
+            if (request.getParameter("invalidLoginCredentials") != null)    {
+                out.println("<script type=\"text/javascript\">");  
+                out.println("alert('Invalid username or password. Please try again.');");  
+                out.println("</script>");
+            }
+            // Ensures invalidation when previous login attempt failed
+            if (request.getParameter("attemptedGuestAccess") != null)    {
+                out.println("<script type=\"text/javascript\">");  
+                out.println("alert('You must log in first.');");  
+                out.println("</script>");
+            }
+            
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            response.setHeader("Pragma", "no-cache");
+            response.setHeader("Expires", "0");
+        %>
+        
         <div class="center">
             <div class="container">
-
                 <div class="title"><span>Login</span></div>
-                <div class="invalid">
-                    <% // This scriptlet prints out an error message when invalid login credentials are entered.
-                        if ((Boolean) session.getAttribute("invalidCredentials")) {
-                            out.println("<br><p style=\"color:red\">Invalid username or password. Please try again.</p>");
-                            session.setAttribute("invalidCredentials", true);
-                            session.removeAttribute("username");
-                            session.invalidate();
-                        }
-                    %>
-                </div>
                 <form action="Login" method="post">
                     <div class="row">
                         <label>Username:</label>

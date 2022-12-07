@@ -31,16 +31,8 @@ public class LoginRedirect extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            
-            RequestDispatcher view = request.getRequestDispatcher("login.jsp");
-
-            out.println("<script type=\"text/javascript\">");  
-            out.println("alert('You must log in first.');");  
-            out.println("</script>");
-            
-            view.include(request, response);
-
+            request.setAttribute("attemptedGuestAccess", "true");
+            response.sendRedirect("login.jsp?attemptedGuestAccess=true");
         }
     }
 
