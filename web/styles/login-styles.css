@@ -20,6 +20,7 @@ body{
   overflow: hidden;
   background-size: 400%;
   padding-bottom: 200px;
+  
 }
 
 .center{
@@ -121,8 +122,10 @@ form .button input:hover{
 
 @media screen and (max-width: 600px) {
 body{
-    height: 900px;
+    
     padding:0;
+    margin-bottom: 20%;
+    
 }
 .center{
     margin: 20% auto;
