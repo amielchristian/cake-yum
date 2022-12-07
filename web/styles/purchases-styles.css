@@ -40,7 +40,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .container-title {
-    font-size: 4vw;
+    font-size: 58px;
     font-family: 'Cookie';
     color: var(--main-linen);
     text-shadow: -2px 0 #e382ac, 0 2px #e382ac, 2px 0 #e382ac, 0 -2px #e382ac;
@@ -80,11 +80,11 @@ table {
 }
 
 th {
-    font-size: 1.3vw;
+    font-size: 24.5px;
 }
 
 td {
-    font-size: 1vw;
+    font-size: 17px;
 }
 
 .item-name {
