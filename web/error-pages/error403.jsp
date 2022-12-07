@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Error 404</title>
+        <title>Error 403</title>
         <link href="../styles/error-page-styles.css" rel="stylesheet" type="text/css"/>
         <link href="styles/error-page-styles.css" rel="stylesheet" type="text/css"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,7 +20,7 @@
     <body>
         <div class="container">
             <!--TODO change src-->
-            <img src="http://localhost:8080/shopping-cart/images/error-page/error-cupcake.png" alt="eaten-cupcake" id="error-cupcake"/>
+            <img src="/CakeYum/images/error-page/error-cupcake.png" alt="eaten-cupcake" id="error-cupcake"/>
             <div class="error-text">
                 <h1>403</h1>
                 <h2>ERROR</h2>
