@@ -7,106 +7,123 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : Ann Clarisse
 */
 *{
-    margin: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+ 
+   
 }
 body{
-    font-family: "century gothic", sans-serif;
-    font-size: 20px;
-    display: grid;
-    height: 100%;
-    width: 100%;
-    place-items: center;
-    margin:auto;
-    font-weight: bolder;
-
-    
-}
-body {
-    background-size: 400%;
-    overflow: hidden;
+     font-family: "century gothic", sans-serif;
     background: linear-gradient(135deg, #F4CFDF, #B6D8F2, #F4CFDF);
+  overflow: hidden;
+  background-size: 400%;
+  padding-bottom: 200px;
+}
+
+.center{
+  max-width: 440px;
+  padding: 0 20px;
+  margin: auto;
+ 
+  
   
 }
-.container {
-    background: white;
-    width: 400px;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
+.container{
     
+  width: 100%;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.1);
+}
+.container .title{
+  height: 90px;
+  background: #5784ba;
+  
+  
+  border-radius: 15px 15px 0 0;
+  color: white;
+  font-size: 30px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .container form{
-    padding: 30px 25px 25px 25px;
+  padding: 30px 25px 25px 25px;
 }
-.center { 
-    max-width: 440px;
-    padding: 0 20px;
-    margin: 170px auto;
+.container form .row{
+  height: 45px;
+  margin-bottom: 15px;
+  position: relative;
+}
+.container form .row input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding-left: 65px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  font-size: 16px;
+  background-color: #d5e0e8;
+  transition: all 0.3s ease;
+  font-family: "century gothic", sans-serif;
   
 }
-
-.button {
-    background-color:#B6D8F2;
-    color: #bd6189;
-    padding: 12px;
-    margin: 10px 0;
-    border: none;
-    width: 50%;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 17px;
-    font-weight: bold;
-    font-family:"century gothic";
-    border: 2px solid #B6D8F2;
+.container form .row .text{
+  color: black;
+  text-align: left;  
+  padding-left: 110px;
 }
-.button:hover {
-    background-color: #7dbae8;
+form .row input:focus{
+  border-color: #5784ba;
+  box-shadow: inset 0px 0px 2px 2px rgba(26,188,156,0.25);
 }
-label {
-   
+form .row input::placeholder{
+  color: #999;
 }
-
-input{
-    margin: 7px 5px;
-    padding: 5px;
-  background-color: #d5e0e8;
-  border-radius: 5px;
-  border:  none;
+.container form .row label{
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  color: white;
+  font-size: 18px;
+  background: #5784ba;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+.container form .button input{
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  padding-left: 0px;
+  background:#5784ba;
+  
+  cursor: pointer;
+}
+form .button input:hover{
+  background: #3b5b82;
+}
+.invalid p{
+    margin: 5px 5px;
+    font-size: 15px;
+    
+}
 .invalid{
+    text-align: center;
    
-}
-.p{
-    font-size: 20px;
-    color: red;
-    font-weight: bold
-}
-
-
-    @media screen and (max-width: 900px) {
-        .container {
-            min-width: 300px;
-            min-height: 200px;
-            width: 100%;
-           height: 100%;
-            margin: auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-                
-        }
-    
-        * {
-            text-align: center;
-
-        }
     
 }
 
-
-
-
+@media screen and (max-width: 900px) {
+body{
+    height: 900px;
+    padding:0;
+}
+.center{
+    margin: 20% auto;
+}
+}
