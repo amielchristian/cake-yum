@@ -26,6 +26,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .no-item {
+    padding: 20px;
     font-family: 'Fredoka One', cursive;
     margin: 30px auto;
     width: 100%;
