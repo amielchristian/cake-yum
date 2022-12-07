@@ -66,18 +66,21 @@
                         Product product = (Product)cartContents.get(i);
                     
                         out.println("<div class=\"cart-item\">");
+                            out.println("<div class=\"top-cart-item\">");
                             out.println("<div class=\"product\">");
                                 out.println("<img class=\"product-image\" src=\"products/"+product.getName()+"/"+product.getName()+".jpg\">");
                                 out.println("<p class=\"item-title\">"+ProductsModel.formatName(product.getName())+"</p>");
                             out.println("</div>");
                             out.println("<p class=\"price-column\">&#8369 "+product.getPrice()+"</p>");
                             out.println("<p class=\"quantity-column\">"+product.getQuantity()+"</p>");
-                            
+                            out.println("</div>");
+                            out.println("<div class=\"bottom-cart-item\">");
                             out.println("<div class=\"edit-column\">");
                             out.println("<a href=\"Products?name="+product.getName()+"\"><button class=\"edit-button\">Edit</button></a>");
                             out.println("</div>");
                             out.println("<div class=\"remove-column\">");
                             out.println("<button class=\"remove-button\" form=\"remove\" name=\"remove\" value=\""+product.getName()+"\">Remove</button>");
+                            out.println("</div>");
                             out.println("</div>");
                         out.println("</div><br>");
                     }
