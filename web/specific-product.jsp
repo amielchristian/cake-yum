@@ -47,7 +47,7 @@
 
                                         <form action="AddToCart">
                                             <input type="hidden" name="name" value="<%= request.getAttribute("file") %>">
-                                            <input type="hidden" name="price" value="<%= ((String)request.getAttribute("price")).replace("Price: &#8369 ", "") %>">
+                                            <input type="hidden" name="price" value="<%= ((String)request.getAttribute("price")).replace("Price: <b>&#8369</b>", "") %>">
                                             <div class="quantity">
                                                 <label>Quantity</label>
                                                 <input type="number" name="quantity" min="1" max="10" value="1"/>
