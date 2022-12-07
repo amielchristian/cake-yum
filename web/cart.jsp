@@ -62,6 +62,8 @@
                             out.println("</div>");
                             out.println("<p>&#8369 "+product.getPrice()+"</p>");
                             out.println("<p>"+product.getQuantity()+"</p>");
+                            
+                            out.println("<a href=\"Products?name="+product.getName()+"\"><button class=\"edit-button\">Edit</button></a>");
                             out.println("<button class=\"remove-button\" form=\"remove\" name=\"remove\" value=\""+product.getName()+"\">Remove</button>");
                         out.println("</div><br>");
                     }
