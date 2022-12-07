@@ -39,6 +39,41 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     align-items: center;
 }
 
+.table-guide {
+    margin: auto;
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    text-justify: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--main-black);
+    font-family: 'Fredoka One', cursive;
+}
+
+.product-title {
+    width: 240px;
+}
+
+.price-title, .price-column {
+    width: 100px;
+}
+
+.quantity-title, .quantity-column {
+    width: 90px;
+}
+
+.edit-title, edit-column {
+    width: 150px;
+}
+
+.remove-title, remove-column {
+    width: 150px;
+}
+
 .cart-list {
     font-family: 'Lato', sans-serif;
     margin: 30px auto;
@@ -61,11 +96,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     margin-top: 30px;
     font-family: 'Fredoka One', cursive;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--main-black);
+}
+
+.cart-div {
+    background-color: #FFFFFF99;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    border-radius: 20px;
 }
 
 .cart-heading {
@@ -126,6 +167,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     font-size: 16px;
     border-radius: 10px;
     font-family: 'Fredoka One', cursive;
+    width: 150px;
 }
 
 .remove-button:hover, .checkout-button:hover, .edit-button:hover {
