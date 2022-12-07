@@ -108,6 +108,10 @@
         <servlet-name>PlaceOrder</servlet-name>
         <servlet-class>controller.PlaceOrder</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginRedirect</servlet-name>
+        <servlet-class>controller.LoginRedirect</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -139,6 +143,10 @@
     <servlet-mapping>
         <servlet-name>PlaceOrder</servlet-name>
         <url-pattern>/PlaceOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginRedirect</servlet-name>
+        <url-pattern>/LoginRedirect</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
