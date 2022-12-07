@@ -58,7 +58,7 @@
                         out.println("<div class=\"cart-item\">");
                             out.println("<div class=\"product\">");
                                 out.println("<img class=\"product-image\" src=\"products/"+product.getName()+"/"+product.getName()+".jpg\">");
-                                out.println("<p class=\"item-title\"><a class=\"item-link\" href=\"Products?name="+product.getName()+"\">"+ProductsModel.formatName(product.getName())+"</a></p>");
+                                out.println("<p class=\"item-title\">"+ProductsModel.formatName(product.getName())+"</p>");
                             out.println("</div>");
                             out.println("<p>&#8369 "+product.getPrice()+"</p>");
                             out.println("<p>"+product.getQuantity()+"</p>");
