@@ -47,7 +47,7 @@
         <div class="container">
             <div class="card">
                 <div class="circle">
-                <img class="icon-img" src="shop-images/clock-icon.png">
+                <img class="icon-img" src="images/shop-images/clock-icon.png">
                 </div>
                 <p class="title">Open Hours</p>
 
@@ -60,7 +60,7 @@
 
             <div class="card">
                 <div class="circle">
-                <img class="icon-img" src="shop-images/services-icon.png">
+                <img class="icon-img" src="images/shop-images/services-icon.png">
                 </div>
                 <p class="title">Services</p>
                 <h5>Various pastries, cakes, and beverages will be available in the shop. 
@@ -71,7 +71,7 @@
 
             <div class="card">
                 <div class="circle">
-                <img class="icon-img" src="shop-images/team-icon.png">
+                <img class="icon-img" src="images/shop-images/team-icon.png">
                 </div>
                 <p class="title">Team</p>
                 <h5>
@@ -82,7 +82,7 @@
 
             <div class="card">
                 <div class="circle">
-                <img class="icon-img" src="shop-images/call-icon.png">
+                <img class="icon-img" src="images/shop-images/call-icon.png">
                 </div>
                 <p class="title">Call Us</p>
                 <h5>For catering services:</h5>

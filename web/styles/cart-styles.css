@@ -26,6 +26,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .no-item {
+    padding: 20px;
     font-family: 'Fredoka One', cursive;
     margin: 30px auto;
     width: 100%;
@@ -36,6 +37,41 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.table-guide {
+    margin: auto;
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    text-justify: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--main-black);
+    font-family: 'Fredoka One', cursive;
+}
+
+.product-title {
+    width: 240px;
+}
+
+.price-title, .price-column {
+    width: 100px;
+}
+
+.quantity-title, .quantity-column {
+    width: 90px;
+}
+
+.edit-title, edit-column {
+    width: 200px;
+}
+
+.remove-title, remove-column {
+    width: 200px;
 }
 
 .cart-list {
@@ -60,11 +96,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     margin-top: 30px;
     font-family: 'Fredoka One', cursive;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--main-black);
+}
+
+.cart-div {
+    background-color: #FFFFFF99;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    border-radius: 20px;
 }
 
 .cart-heading {
@@ -82,6 +124,26 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     align-items: center;
     padding-bottom: 20px;
     border-bottom: 1px solid var(--main-black);
+}
+
+.top-cart-item {
+    margin: auto;
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottom-cart-item {
+    margin: auto;
+    width: 90%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 .product {
@@ -114,7 +176,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     color: var(--main-black);
 }
 
-.remove-button {
+.remove-button, .edit-button, .checkout-button {
     background-color: var(--main-black);
     border: none;
     color: var(--main-yellow);
@@ -123,11 +185,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border-radius: 100px;
+    border-radius: 10px;
     font-family: 'Fredoka One', cursive;
+    width: 150px;
 }
 
-.remove-button:hover {
+.remove-button:hover, .checkout-button:hover, .edit-button:hover {
     transform: scale(1.1);
     cursor: pointer;
 }
@@ -138,38 +201,32 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     align-items: center;
 }
 
-.checkout-button {
-    background-color: var(--main-black);
-    border: none;
-    color: var(--main-white);
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 100px;
-    font-family: 'Fredoka One', cursive;
-}
+@media screen and (max-width: 1200px) {
 
-.checkout-button:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-}
+    .edit-title, edit-column {
+        display: none;
+    }
 
-.edit-button {
-    background-color: var(--main-black);
-    border: none;
-    color: var(--main-yellow);
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 100px;
-    font-family: 'Fredoka One', cursive;
-}
+    .remove-title, remove-column {
+        display: none;
+    }
+    
+    .top-cart-item {
+        width: 100%;
+        margin-top: 10px;
+    }
 
-.edit-button:hover {
-    transform: scale(1.1);
-    cursor: pointer;
+    .bottom-cart-item {
+        padding-top: 30px;
+        justify-content: space-evenly;
+    }
+
+    .cart-item {
+        flex-direction: column;
+    }
+
+    .remove-title, remove-column, .edit-title, edit-column {
+        width: 30px;
+    }
+
 }

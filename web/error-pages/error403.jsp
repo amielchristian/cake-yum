@@ -20,7 +20,7 @@
     <body>
         <div class="container">
             <!--TODO change src-->
-            <img src="http://localhost:8080/shopping-cart/temp-image-folder/error-cupcake.png" alt="eaten-cupcake" id="error-cupcake"/>
+            <img src="http://localhost:8080/shopping-cart/images/error-page/error-cupcake.png" alt="eaten-cupcake" id="error-cupcake"/>
             <div class="error-text">
                 <h1>403</h1>
                 <h2>ERROR</h2>

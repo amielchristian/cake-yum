@@ -18,18 +18,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     flex-direction: column;
     font-family: 'Fredoka One', cursive;
     color: var(--main-pink);
-    font-size: 1vw;
     margin: 30px auto;
     width: 70%;
-    padding: 20px;
     background-color: var(--main-yellow);
     border-radius: 20px;
     box-shadow: -3px 3px 5px 2px #00000033;
 }
 
 .no-item {
+    padding: 20px;
     font-family: 'Fredoka One', cursive;
-    text-align: center;
     margin: 30px auto;
     width: 100%;
 }
