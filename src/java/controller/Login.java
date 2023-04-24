@@ -5,8 +5,14 @@
 package controller;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,38 +26,70 @@ import model.Users;
  * @author chris
  */
 public class Login extends HttpServlet {
+    Connection conn;
+    
+    @Override
+    public void init(ServletConfig config) throws ServletException   {
+        try {
+            Class.forName(config.getInitParameter("jdbcClassName"));
+            
+            String dbUsername = config.getInitParameter("dbUsername");
+            String dbPassword = config.getInitParameter("dbPassword");
+            StringBuffer url = new StringBuffer(config.getInitParameter("jdbcDriverURL"))
+                                .append("://")
+                                .append(config.getInitParameter("dbHostName"))
+                                .append(":")
+                                .append(config.getInitParameter("dbPort"))
+                                .append("/")
+                                .append(config.getInitParameter("dbName"))
+                                .append(config.getInitParameter("addlParams"));
+            
+            conn = DriverManager.getConnection(url.toString(), dbUsername, dbPassword);
+        }
+        catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
+            try {
+                String username = request.getParameter("username");
+                String password = request.getParameter("password");
 
-            Users u = new Users();
-            File credentialsFile = new File(getServletContext().getRealPath("/login-credentials.txt"));
-            Map<String, String> loginCredentials = u.getLoginCredentials(credentialsFile);
-            
-            HttpSession session = request.getSession();
-            if (loginCredentials.containsKey(username) && password.equals(loginCredentials.get(username)))  {
-                session.setAttribute("username", username);
-                session.setAttribute("orderCounter", 1);
-                session.setAttribute("order-"+session.getAttribute("orderCounter"), new ArrayList<Product>());
+                String query = "SELECT * FROM USERS WHERE UNAME=?";
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setString(1, username);
+                ResultSet rs = ps.executeQuery();
+                
+                List<String> userInfo = new LinkedList();
+                while (rs.next())   {
+                    userInfo.add(rs.getString("UNAME"));
+                    userInfo.add(rs.getString("PASSWORD"));
+                    
+                    userInfo.add(rs.getString("NAME"));
+                    userInfo.add(rs.getString("ADDRESS"));
+                    userInfo.add(rs.getString("CONTACT_NUM"));
+                }
+                
+                HttpSession session = request.getSession();
+                if (userInfo.get(0).equals(username) && userInfo.get(1).equals(password))  {
+                    session.setAttribute("username", username);
+                    session.setAttribute("orderCounter", 1);
+                    session.setAttribute("order-"+session.getAttribute("orderCounter"), new ArrayList<Product>());
+                    session.setAttribute("userInfo", userInfo);
 
-                response.sendRedirect("index.jsp");
+                    response.sendRedirect("index.jsp");
+                }
+                else    {
+                    request.setAttribute("invalidLoginCredentials", "true");
+                    response.sendRedirect("login.jsp?invalidLoginCredentials=true");
+                }
             }
-            else    {
-                request.setAttribute("invalidLoginCredentials", "true");
-                response.sendRedirect("login.jsp?invalidLoginCredentials=true");
+            catch (SQLException sqle)   {
+                sqle.printStackTrace();
             }
         }
     }

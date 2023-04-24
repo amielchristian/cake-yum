@@ -6,6 +6,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -46,7 +47,9 @@ public class Account extends HttpServlet {
                 response.sendRedirect("error-pages/error401.jsp");
             }
             if (session.getAttribute("username") != null)   {
-                String username = (String)session.getAttribute("username"); 
+                List<String> userInfo = (List)session.getAttribute("userInfo");
+                
+                String username = userInfo.get(0); // USERNAME 
                 out.println("<div class=\"main\">");
                 out.println("<div class=\"dot\"></div>");
                 out.println("<h1 class=\"name\">"+username+"'s Account</h1>");
@@ -56,7 +59,7 @@ public class Account extends HttpServlet {
                         out.println("<td>Name: </td>");
                         out.println("<td>");
 
-                            String name = (String)getServletConfig().getInitParameter(username+"-name");
+                            String name = userInfo.get(2); // NAME
                             out.println(name);
 
                         out.println("</td>");
@@ -65,7 +68,7 @@ public class Account extends HttpServlet {
                             out.println("<td>Address: </td>");
                             out.println("<td>");
 
-                            String address = (String)getServletConfig().getInitParameter(username+"-address");
+                            String address = userInfo.get(3); // ADDRESS
                             out.println(address);
 
                             out.println("</td>");
@@ -74,7 +77,7 @@ public class Account extends HttpServlet {
                         out.println("<td>Contact Number: </td>");
                         out.println("<td>");
 
-                            String number = (String)getServletConfig().getInitParameter(username+"-number");
+                            String number = userInfo.get(4); // CONTACT NUM
                             out.println(number);
 
                         out.println("</td>");
