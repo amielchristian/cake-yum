@@ -4,33 +4,33 @@
  */
 package model;
 
+import java.sql.Blob;
+
 /**
  *
  * @author chris
  */
 public class Product {
+    private int id;
     private String name;
     private double price;
-    private int quantity;
+    private String imageString;
+    private String description;
+    private String altName;
     
-    public Product(String name, double price, int quantity)  {
+    public Product(int id, String name, double price, String imageString, String description, String altName)  {
+        this.id = id;
         this.name = name;
         this.price = price;
-        this.quantity = quantity;
+        this.imageString = imageString;
+        this.description = description;
+        this.altName = altName;
     }
     // getters
-    public String getName()  {
-        return name;
-    }
-    public double getPrice()  {
-        return price;
-    }
-    public int getQuantity()  {
-        return quantity;
-    }
-    
-    @Override
-    public String toString()  {
-        return name;
-    }
+    public int getID()   { return id; }
+    public String getName()  { return name; }
+    public double getPrice()  { return price; }
+    public String getImageString()  { return imageString; }
+    public String getDescription()  { return description; }
+    public String getAltName()  { return altName; }
 }

@@ -6,7 +6,10 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,21 +22,12 @@ import model.*;
  * @author chris
  */
 public class Checkout extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            HttpSession session = request.getSession();
+            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -50,16 +44,13 @@ public class Checkout extends HttpServlet {
             // include header
             request.getRequestDispatcher("/header.jsp").include(request, response);
             
-            
             out.println("<div class=\"checkout-body\">");
             out.println("<div class=\"checkout-container\">");
             
             out.println("<h1 class=\"container-title\">Checkout</h1>");
-            HttpSession session = request.getSession(false);
-            ArrayList cartContents = (ArrayList)session.getAttribute("order-"+session.getAttribute("orderCounter"));
-            
             
             out.println("<div class=\"order\">");
+            
             // Display cart in tabular form
             out.println("<div class=\"table\" style=\"overflow-x:auto;\">");
             out.println("<table>");
@@ -69,17 +60,46 @@ public class Checkout extends HttpServlet {
             out.println("<th class=\"price-column\">Price</th>");
             out.println("</tr>");
             
+        // LOGIC
+            // for connectivity
+            String driver = getServletContext().getInitParameter("jdbcClassName");
+            String username = getServletContext().getInitParameter("dbUsername");
+            String password = getServletContext().getInitParameter("dbPassword");
+
+            StringBuffer url = new StringBuffer((String)getServletContext().getInitParameter("jdbcDriverURL"))
+                        .append("://")
+                        .append((String)getServletContext().getInitParameter("dbHostName"))
+                        .append(":")
+                        .append((String)getServletContext().getInitParameter("dbPort"))
+                        .append("/")
+                        .append((String)getServletContext().getInitParameter("dbName"))
+                        .append((String)getServletContext().getInitParameter("addlParams"));
+            // the map generated below represents the entries in the cart that were selected in the previous screen
+            List<Object> array = Arrays.asList(request.getParameterMap().keySet().toArray());
+            Map<Integer,Integer> cart = new HashMap();
+            for (Object o : array)  {
+                String s = (String) o;
+                Integer i = Integer.valueOf(s);
+                cart.put(i, Integer.valueOf(request.getParameter(s)));
+            }
+            
             double total = 0;
-            for (int i = 0; i < cartContents.size(); i++)   {
-                Product product = (Product)cartContents.get(i);
-                total += (product.getPrice()*product.getQuantity());
+            for (Map.Entry<Integer,Integer> entry : cart.entrySet())   {
+                Integer productID = entry.getKey();
+                Integer quantity = entry.getValue();
+                
+                ProductGetter pg = new ProductGetter(driver, username, password, url.toString());
+                Product product = pg.getProduct(productID);
+                
+                total += product.getPrice() * quantity;
                 
                 out.println("<tr>");
-                    out.println("<td class=\"item-name\">"+ProductsModel.formatName(product.getName())+"</td>");    
-                    out.println("<td class=\"item-quantity\">"+product.getQuantity()+"</td>");
-                    out.println("<td class=\"item-price\"><b>&#8369</b>"+String.format("%.2f", (product.getPrice()*product.getQuantity()))+"</td>");
+                    out.println("<td class=\"item-name\">"+product.getName()+"</td>");    
+                    out.println("<td class=\"item-quantity\">"+quantity+"</td>");
+                    out.println("<td class=\"item-price\"><b>&#8369</b>"+String.format("%.2f", (product.getPrice() * quantity))+"</td>");
                 out.println("</tr>");
             }
+            session.setAttribute("cart", cart);
             
             out.println("<tr class=\"total-row\">");
             out.println("<td class=\"total-title\" colspan=\"2\">Total: </td>");

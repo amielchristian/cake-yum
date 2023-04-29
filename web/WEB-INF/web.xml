@@ -1,40 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <!-- Encryption -->
+    <context-param>
+        <param-name>key</param-name>
+        <param-value>ics_2609ics_2609</param-value>
+    </context-param>
+    <context-param>
+        <param-name>cipherTransformation</param-name>
+        <param-value>AES/ECB/PKCS5Padding</param-value>
+    </context-param>
+    <context-param>
+        <param-name>cipher</param-name>
+        <param-value>AES</param-value>
+    </context-param>
+    <!-- SQL -->
+    <context-param>
+        <param-name>jdbcClassName</param-name>
+        <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbUsername</param-name>
+        <param-value>app</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPassword</param-name>
+        <param-value>app</param-value>
+    </context-param>
+    <context-param>
+        <param-name>jdbcDriverURL</param-name>
+        <param-value>jdbc:derby</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbHostName</param-name>
+        <param-value>localhost</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbPort</param-name>
+        <param-value>1527</param-value>
+    </context-param>
+    <context-param>
+        <param-name>dbName</param-name>
+        <param-value>CakeDB</param-value>
+    </context-param>
+    <context-param>
+        <param-name>addlParams</param-name>
+        <param-value/>
+    </context-param>
+    
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>controller.Login</servlet-class>
-        <init-param>
-            <param-name>jdbcClassName</param-name>
-            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
-        </init-param>
-        <init-param>
-            <param-name>dbUsername</param-name>
-            <param-value>app</param-value>
-        </init-param>
-        <init-param>
-            <param-name>dbPassword</param-name>
-            <param-value>app</param-value>
-        </init-param>
-        <init-param>
-            <param-name>jdbcDriverURL</param-name>
-            <param-value>jdbc:derby</param-value>
-        </init-param>
-        <init-param>
-            <param-name>dbHostName</param-name>
-            <param-value>localhost</param-value>
-        </init-param>
-        <init-param>
-            <param-name>dbPort</param-name>
-            <param-value>1527</param-value>
-        </init-param>
-        <init-param>
-            <param-name>dbName</param-name>
-            <param-value>CakeDB</param-value>
-        </init-param>
-        <init-param>
-            <param-name>addlParams</param-name>
-            <param-value/>
-        </init-param>
     </servlet>
     <servlet>
         <servlet-name>Logout</servlet-name>

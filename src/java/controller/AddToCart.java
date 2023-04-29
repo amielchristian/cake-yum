@@ -6,30 +6,29 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.CartGetter;
 import model.Product;
+import model.UserGetter;
 
 /**
  *
  * @author chris
  */
 public class AddToCart extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    Connection conn;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -40,26 +39,64 @@ public class AddToCart extends HttpServlet {
                 response.sendRedirect("LoginRedirect");
             }
             else    {
-                // get array list from session, if existent
                 HttpSession session = request.getSession(false);
-                ArrayList orders = (ArrayList)session.getAttribute("order-"+session.getAttribute("orderCounter"));
+                
+                // these three integers form an entry in the Cart table in the database
+                Integer userID;
+                Integer productID = Integer.valueOf(request.getParameter("productID"));
+                Integer quantity = Integer.valueOf(request.getParameter("quantity"));
+                
+                try {
+                    // connectivity stuff
+                    String driver = getServletContext().getInitParameter("jdbcClassName");
+                    String username = getServletContext().getInitParameter("dbUsername");
+                    String password = getServletContext().getInitParameter("dbPassword");
 
-                // generate product
-                String name = (String)request.getParameter("name");
-                String price = (String)request.getParameter("price");
-                String quantity = (String)request.getParameter("quantity");
+                    StringBuffer url = new StringBuffer((String)getServletContext().getInitParameter("jdbcDriverURL"))
+                                .append("://")
+                                .append((String)getServletContext().getInitParameter("dbHostName"))
+                                .append(":")
+                                .append((String)getServletContext().getInitParameter("dbPort"))
+                                .append("/")
+                                .append((String)getServletContext().getInitParameter("dbName"))
+                                .append((String)getServletContext().getInitParameter("addlParams"));
+                    
+                    // preliminary calls to the database, to:
+                    //     1. get the user ID associated with the username through the UserGetter class
+                    //     2. get the list of entries in the Cart table that include the user ID and the ID of the product being processed
+                    CartGetter cg = new CartGetter(driver, username, password, url.toString());
+                    UserGetter ug = new UserGetter(driver, username, password, url.toString());
+                    userID = ug.getUserID((String)session.getAttribute("username")); // gets the user ID associated with the username
+                    Map<Integer,Integer> cartContents = cg.getCart(userID); // given the username, gets the rest of the entry in the Cart table associated with that user (
 
-                Product product = new Product(name, Double.parseDouble(price), Integer.parseInt(quantity));
-                // This for-loop removes products with the same name to avoid duplicates.
-                for (int i = 0; i < orders.size(); i++) {
-                    if (((Product)orders.get(i)).getName().equals(name))    {
-                        orders.remove(orders.get(i));
+                    // the main calls to the database, either for updating existing entries in the Cart table or adding them
+                    Class.forName(driver);
+                    conn = DriverManager.getConnection(url.toString(), username, password);
+                    
+                    // if there is an entry in the database that contains both the user ID and the product ID, then quantity is updated
+                    if (cartContents.containsKey(productID))    {
+                        String query = "UPDATE CART SET QUANTITY=? WHERE USER_ID=? AND PRODUCT_ID=?";
+                        PreparedStatement ps = conn.prepareCall(query);
+                        ps.setInt(1, quantity);
+                        ps.setInt(2, userID);
+                        ps.setInt(3, productID);
+                        ps.executeUpdate();
                     }
-                }
-                orders.add(product);
+                    // if there is no such entry, then an entry is added to the database
+                    else    {
+                        String query = "INSERT INTO CART(USER_ID,PRODUCT_ID,QUANTITY) VALUES ((SELECT USER_ID FROM USERS WHERE USER_UNAME=?),?,?)";
+                        PreparedStatement ps = conn.prepareCall(query);
+                        ps.setString(1, (String)session.getAttribute("username"));
+                        ps.setInt(2,productID);
+                        ps.setInt(3, quantity);
+                        ps.executeUpdate();
+                    }
 
-                session.setAttribute("order-"+session.getAttribute("orderCounter"), orders);
-                response.sendRedirect("cart.jsp");
+                    response.sendRedirect("cart.jsp");
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

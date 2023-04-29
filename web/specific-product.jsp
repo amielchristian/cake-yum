@@ -40,14 +40,15 @@
                             <div class="row">
                                 <div class="box">
                                     <div class="big">
-                                    <img class="img" src="<%=getServletContext().getContextPath() + "/products/" + request.getAttribute("file")%>/<%=request.getAttribute("file")%>.jpg">
+                                    <img class="img" src="data:img/jpg;base64,<%= request.getAttribute("imageString") %>"> 
                                     </div>
                                     <div class="cont">
 
 
                                         <form action="AddToCart">
-                                            <input type="hidden" name="name" value="<%= request.getAttribute("file") %>">
-                                            <input type="hidden" name="price" value="<%= ((String)request.getAttribute("price")).replace("Price: <b>&#8369</b>", "") %>">
+                                            <input type="hidden" name="productID" value="<%= request.getAttribute("productID") %>">
+                                            <input type="hidden" name="name" value="<%= request.getAttribute("altName") %>">
+                                            <input type="hidden" name="price" value="<%= request.getAttribute("price") %>">
                                             <div class="quantity">
                                                 <label>Quantity</label>
                                                 <input type="number" name="quantity" min="1" max="10" value="1"/>
@@ -65,14 +66,14 @@
                                     <div class="whole">
                                         
                                         <div class="border">
-                                            <h1 class="title"><%= (String) request.getAttribute("formatted-name")%></h1>  
+                                            <h1 class="title"><%= (String) request.getAttribute("name")%></h1>  
                                         </div>
                                         <div class="border">
                                             <div class="description"><%= (String) request.getAttribute("description")%></div>
                                         </div><!-- comment -->
                                         <div class="border bottom">
-                                            <div class="price">
-                                              <%= (String) request.getAttribute("price")%>
+                                            <div class="price">Price: 
+                                              <b>&#8369</b><%= request.getAttribute("price")%>
                                             </div>
 
                                         </div>

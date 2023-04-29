@@ -14,76 +14,45 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ProductsModel;
+import model.Product;
+import model.ProductGetter;
 
 /**
  *
  * @author Patricia Denise
  */
 public class Products extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-           
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Products</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<body>");
-            
-            String product = request.getParameter("name");//product name
-            String path = getServletContext().getRealPath("/products");
-            out.println(path);
-            
-            // create a list of directories in /products
-            List<String> productList = new ArrayList<>();
+            String driver = getServletContext().getInitParameter("jdbcClassName");
+            String username = getServletContext().getInitParameter("dbUsername");
+            String password = getServletContext().getInitParameter("dbPassword");
 
-            File directory = new File(path);
-            if (directory.isDirectory()){
-               String[] files = directory.list();
-               for (String file : files)    {
-                   productList.add(file);
-               }
-            }
-            
-            // verify if the product is in the list of products
-            if (productList.contains(product))    {
-                // information about the product will be read from the corresponding directory
-                String price = ProductsModel.generatePrice(new File(path + "/" + product + "/price.txt"));
-                String description = ProductsModel.generateDescription(new File(path + "/" + product + "/description.txt"));
-                
-                // attributes will be forwarded to specific-product.jsp
-                request.setAttribute("file", product);
-                request.setAttribute("formatted-name", ProductsModel.formatName(product));
-                request.setAttribute("price", price);
-                request.setAttribute("description", description);
-                
-                RequestDispatcher view = request.getRequestDispatcher("specific-product.jsp");
-                view.forward(request, response);    
-            }
-            else    {
-                response.sendRedirect("error-pages/error500.jsp");
-            }
-            
-            out.println("</body>");
-            out.println("</html>");
-            
-            
-            
+            StringBuffer url = new StringBuffer((String)getServletContext().getInitParameter("jdbcDriverURL"))
+                        .append("://")
+                        .append((String)getServletContext().getInitParameter("dbHostName"))
+                        .append(":")
+                        .append((String)getServletContext().getInitParameter("dbPort"))
+                        .append("/")
+                        .append((String)getServletContext().getInitParameter("dbName"))
+                        .append((String)getServletContext().getInitParameter("addlParams"));
+
+            ProductGetter pg = new ProductGetter(driver, username, password, url.toString());
+            String productName = request.getParameter("name");//product name
+            Product product = pg.getProduct(productName);
+
+            // attributes will be forwarded to specific-product.jsp
+            request.setAttribute("altName", product.getAltName());
+            request.setAttribute("name", product.getName());
+            request.setAttribute("price", String.format("%.2f",product.getPrice()));
+            request.setAttribute("description", product.getDescription());
+            request.setAttribute("imageString", product.getImageString());
+            request.setAttribute("productID", product.getID());
+
+            RequestDispatcher view = request.getRequestDispatcher("specific-product.jsp");
+            view.forward(request, response);
         }
     }
 

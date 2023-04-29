@@ -4,7 +4,12 @@
     Author     : chris
 --%>
 
-<%@page import="model.ProductsModel"%>
+<%@page import="model.UserGetter"%>
+<%@page import="org.apache.commons.codec.binary.Base64"%>
+<%@page import="java.sql.Blob"%>
+<%@page import="model.ProductGetter"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="model.CartGetter"%>
 <%@page import="model.Product"%>
 <%@page import="java.util.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -39,60 +44,93 @@
                 response.sendRedirect("LoginRedirect");
             }
             else    {
-                ArrayList cartContents = (ArrayList)session.getAttribute("order-"+session.getAttribute("orderCounter"));
-                if (cartContents.isEmpty())   {
-                    out.println("<div class=\"no-item\">");
-                    out.println("<p>It doesn't seem like you have anything in your cart right now.</p>");
-                    out.println("</div>");
-                }
+                // for connectivity
+                String driver = getServletContext().getInitParameter("jdbcClassName");
+                String username = getServletContext().getInitParameter("dbUsername");
+                String password = getServletContext().getInitParameter("dbPassword");
 
+                StringBuffer url = new StringBuffer((String)getServletContext().getInitParameter("jdbcDriverURL"))
+                            .append("://")
+                            .append((String)getServletContext().getInitParameter("dbHostName"))
+                            .append(":")
+                            .append((String)getServletContext().getInitParameter("dbPort"))
+                            .append("/")
+                            .append((String)getServletContext().getInitParameter("dbName"))
+                            .append((String)getServletContext().getInitParameter("addlParams"));
+                         
+                // a preliminary call to the database for getting the ID associated with the current user
+                UserGetter ug = new UserGetter(driver, username, password, url.toString());
+                Integer userID = ug.getUserID((String)session.getAttribute("username"));  
+                          
+                // this retrieves the contents of the cart of the current user from the database
+                CartGetter cg = new CartGetter(driver, username, password, url.toString());
+                Map<Integer,Integer> cartContents = cg.getCart(userID);
+                
+                if (cartContents.isEmpty())   {
+                %>
+                    <div class="no-item">
+                        <p>It doesn't seem like you have anything in your cart right now.</p>
+                    </div>
+                <%
+                }
                 else    {
-                    out.println("<div class=\"cart-list\">");
-                    out.println("<div class=\"cart-header\">");
-                    out.println("<h1 class=\"cart-heading\">Your Cart</h1>");
-                    out.println("</div>");
-                    out.println("<form name=\"remove\" id=\"remove\" action=\"RemoveFromCart\"></form>");
+                %>
+                    <div class="cart-list">
+                    <div class="cart-header">
+                    <h1 class="cart-heading">Your Cart</h1>
+                    </div>
                     
-                    out.println("<div class=\"cart-div\">");
-                    out.println("<div class=\"table-guide\">");
-                    out.println("<p class=\"product-title\">product</p>");
-                    out.println("<p class=\"price-title\">price</p>");
-                    out.println("<p class=\"quantity-title\">quantity</p>");
-                    out.println("<p class=\"edit-title\"></p>");
-                    out.println("<p class=\"remove-title\"></p>");
-                    out.println("</div>");
+                    <div class="cart-div">
+                    <div class="table-guide">
+                    <p class="product-title">product</p>
+                    <p class="price-title">price</p>
+                    <p class="quantity-title">quantity</p>
+                    <p class="edit-title"></p>
+                    <p class="remove-title"></p>
+                    </div>
+                        
+                    <form method="post" name="Checkout" id="Checkout" action="Checkout"></form>
+                    <form name="remove" id="remove" action="RemoveFromCart"></form>
+                <%
+                    for (Map.Entry<Integer,Integer> entry : cartContents.entrySet())   {
+                        ProductGetter pg = new ProductGetter(driver, username, password, url.toString());
+                        Product product = pg.getProduct(entry.getKey());
+                        
+                        int productID = product.getID();
+                        String name = product.getName();
+                        Double price = product.getPrice();
+                        String altName = product.getAltName();
+                        String imageString = product.getImageString();
+                %>
+                        <div class="cart-item">
+                            <input type="checkbox" name="<%= productID %>" value="<%= entry.getValue() %>" form="Checkout" checked="true"/>
+                            <div class="top-cart-item">
+                            <div class="product">
+                                <img class="product-image" src="data:img/jpg;base64,<%= imageString %>">
+                                <p class="item-title"><%=name%></p>
+                            </div>
+                            <p class="price-column"><b>&#8369</b><%= String.format("%.2f", price)%></p>
+                            <p class="quantity-column"><%= entry.getValue()%></p>
+                            </div>
+                            <div class="bottom-cart-item">
+                            <div class="edit-column">
+                            <a href="Products?name=<%= altName %>"><button class="edit-button">Edit</button></a>
+                            </div>
+                            <div class="remove-column">
+                            <button class="remove-button" form="remove" name="remove" value="<%= altName %>">Remove</button>
+                            </div>
+                            </div>
+                        </div><br>
+                  <%  } %>
+                    </div>
+                    </div>
                     
-                    for (int i = 0; i < cartContents.size(); i++)   {
-                        Product product = (Product)cartContents.get(i);
-                    
-                        out.println("<div class=\"cart-item\">");
-                            out.println("<div class=\"top-cart-item\">");
-                            out.println("<div class=\"product\">");
-                                out.println("<img class=\"product-image\" src=\"products/"+product.getName()+"/"+product.getName()+".jpg\">");
-                                out.println("<p class=\"item-title\">"+ProductsModel.formatName(product.getName())+"</p>");
-                            out.println("</div>");
-                            out.println("<p class=\"price-column\"><b>&#8369</b>"+String.format("%.2f", (Double)product.getPrice())+"</p>");
-                            out.println("<p class=\"quantity-column\">"+product.getQuantity()+"</p>");
-                            out.println("</div>");
-                            out.println("<div class=\"bottom-cart-item\">");
-                            out.println("<div class=\"edit-column\">");
-                            out.println("<a href=\"Products?name="+product.getName()+"\"><button class=\"edit-button\">Edit</button></a>");
-                            out.println("</div>");
-                            out.println("<div class=\"remove-column\">");
-                            out.println("<button class=\"remove-button\" form=\"remove\" name=\"remove\" value=\""+product.getName()+"\">Remove</button>");
-                            out.println("</div>");
-                            out.println("</div>");
-                        out.println("</div><br>");
-                    }
-                    out.println("</div>");
-                    out.println("</div>");
-                    
-                    out.println("<div class=\"checkout-list\">");
-                    out.println("<div class=\"checkout-container\">");
-                    out.println("<form name=\"Checkout\" id=\"Checkout\" action=\"Checkout\"></form>");
-                    out.println("<button class=\"checkout-button\" form=\"Checkout\" name=\"Checkout\" value=\"Checkout\">Checkout</button>");
-                    out.println("</div>");
-                    out.println("</div>");
+                    <div class="checkout-list">
+                    <div class="checkout-container">
+                    <button class="checkout-button" form="Checkout" value="Checkout">Checkout</button>
+                    </div>
+                    </div>
+                    <%
                 }
             }
         %>
