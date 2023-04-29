@@ -6,6 +6,9 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,47 +16,55 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Product;
+import model.ProductGetter;
+import model.UserGetter;
 
-/**
- *
- * @author chris
- */
 public class RemoveFromCart extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    Connection conn;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RemoveFromCart</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            
-            HttpSession session = request.getSession();
-            ArrayList orders = (ArrayList)session.getAttribute("order-"+session.getAttribute("orderCounter"));
+            HttpSession session = request.getSession(false);
             String removedProduct = request.getParameter("remove");
-            for (int i = 0; i < orders.size(); i++) {
-                if (((Product)orders.get(i)).getName().equals(removedProduct))    {
-                    orders.remove(orders.get(i));
-                }
-            }
-            session.setAttribute("order-"+session.getAttribute("orderCounter"), orders);
-            response.sendRedirect("cart.jsp");
             
-            out.println("</body>");
-            out.println("</html>");
+            try {
+                // connectivity stuff
+                String driver = getServletContext().getInitParameter("jdbcClassName");
+                String username = getServletContext().getInitParameter("dbUsername");
+                String password = getServletContext().getInitParameter("dbPassword");
+
+                StringBuffer url = new StringBuffer((String)getServletContext().getInitParameter("jdbcDriverURL"))
+                            .append("://")
+                            .append((String)getServletContext().getInitParameter("dbHostName"))
+                            .append(":")
+                            .append((String)getServletContext().getInitParameter("dbPort"))
+                            .append("/")
+                            .append((String)getServletContext().getInitParameter("dbName"))
+                            .append((String)getServletContext().getInitParameter("addlParams"));
+                
+                // preliminary calls to the database for getting user ID and product ID
+                UserGetter ug = new UserGetter(driver, username, password, url.toString());
+                ProductGetter pg = new ProductGetter(driver, username, password, url.toString());
+                Integer userID = ug.getUserID((String)session.getAttribute("username"));
+                Integer productID = pg.getProduct(removedProduct).getID();
+                
+                // main call to database
+                Class.forName(driver);
+                conn = DriverManager.getConnection(url.toString(), username, password);
+                
+                String query = "DELETE FROM CART WHERE USER_ID=? AND PRODUCT_ID=?";
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setInt(1, userID);
+                ps.setInt(2, productID);
+                ps.executeUpdate();
+                
+                response.sendRedirect("cart.jsp");
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
