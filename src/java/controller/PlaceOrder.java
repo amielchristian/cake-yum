@@ -56,46 +56,47 @@ public class PlaceOrder extends HttpServlet {
             int userID = ug.getUserID((String)session.getAttribute("username"));
             
             try {
-                Class.forName(driver);
-                conn = DriverManager.getConnection(url.toString(), username, password);
-        
-                // add an entry to the ORDERS table
-                String q1 = "INSERT INTO ORDERS(USER_ID,ORDER_TIME) VALUES (?,CURRENT_TIMESTAMP)";
-                PreparedStatement ps1 = conn.prepareStatement(q1);
-                ps1.setInt(1, userID);
-                ps1.execute();
-                
                 Map<Integer,Integer> cart = (Map)session.getAttribute("cart");
-                for (Map.Entry<Integer,Integer> entry : cart.entrySet())   {
-                    Integer productID = entry.getKey();
-                    Integer quantity = entry.getValue();
+                if (!cart.isEmpty())   {
+                    Class.forName(driver);
+                    conn = DriverManager.getConnection(url.toString(), username, password);
 
-                    ProductGetter pg = new ProductGetter(driver, username, password, url.toString());
-                    Product product = pg.getProduct(productID);
-                    Double price = product.getPrice();
-                    
-                    // add entries to ORDER_PRODUCTS table
-                    String q2 = "INSERT INTO ORDER_PRODUCTS(ORDER_ID,PRODUCT_ID,QUANTITY,COST) VALUES (IDENTITY_VAL_LOCAL(),?,?,?)";
-                    PreparedStatement ps2 = conn.prepareStatement(q2);
-                    ps2.setInt(1, productID);
-                    ps2.setInt(2, quantity);
-                    ps2.setDouble(3, (price * quantity));
-                    ps2.execute();
-                    
-                    // remove entries from CART table
-                    String q3 = "DELETE FROM CART WHERE USER_ID=? AND PRODUCT_ID=?";
-                    PreparedStatement ps3 = conn.prepareStatement(q3);
-                    ps3.setInt(1, userID);
-                    ps3.setInt(2, productID);
-                    ps3.execute();
+                    // add an entry to the ORDERS table
+                    String q1 = "INSERT INTO ORDERS(USER_ID,ORDER_TIME) VALUES (?,CURRENT_TIMESTAMP)";
+                    PreparedStatement ps1 = conn.prepareStatement(q1);
+                    ps1.setInt(1, userID);
+                    ps1.execute();
+
+                    for (Map.Entry<Integer,Integer> entry : cart.entrySet())   {
+                        Integer productID = entry.getKey();
+                        Integer quantity = entry.getValue();
+
+                        ProductGetter pg = new ProductGetter(driver, username, password, url.toString());
+                        Product product = pg.getProduct(productID);
+                        Double price = product.getPrice();
+
+                        // add entries to ORDER_PRODUCTS table
+                        String q2 = "INSERT INTO ORDER_PRODUCTS(ORDER_ID,PRODUCT_ID,QUANTITY,COST) VALUES (IDENTITY_VAL_LOCAL(),?,?,?)";
+                        PreparedStatement ps2 = conn.prepareStatement(q2);
+                        ps2.setInt(1, productID);
+                        ps2.setInt(2, quantity);
+                        ps2.setDouble(3, (price * quantity));
+                        ps2.execute();
+
+                        // remove entries from CART table
+                        String q3 = "DELETE FROM CART WHERE USER_ID=? AND PRODUCT_ID=?";
+                        PreparedStatement ps3 = conn.prepareStatement(q3);
+                        ps3.setInt(1, userID);
+                        ps3.setInt(2, productID);
+                        ps3.execute();
+                    }
                 }
             }
             catch (Exception e) {
                 e.printStackTrace();
             }
-            
             session.removeAttribute("cart");
-            
+                
             response.sendRedirect("purchases.jsp");
         }
     }
