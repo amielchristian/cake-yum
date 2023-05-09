@@ -23,6 +23,7 @@ import nl.captcha.Captcha;
  * @author chris
  */
 public class Login extends HttpServlet {
+
     Connection conn;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -30,21 +31,21 @@ public class Login extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             try {
-                Class.forName((String)getServletContext().getInitParameter("jdbcClassName"));
+                Class.forName((String) getServletContext().getInitParameter("jdbcClassName"));
 
-                String dbUsername = (String)getServletContext().getInitParameter("dbUsername");
-                String dbPassword = (String)getServletContext().getInitParameter("dbPassword");
-                StringBuffer url = new StringBuffer((String)getServletContext().getInitParameter("jdbcDriverURL"))
-                                    .append("://")
-                                    .append((String)getServletContext().getInitParameter("dbHostName"))
-                                    .append(":")
-                                    .append((String)getServletContext().getInitParameter("dbPort"))
-                                    .append("/")
-                                    .append((String)getServletContext().getInitParameter("dbName"))
-                                    .append((String)getServletContext().getInitParameter("addlParams"));
+                String dbUsername = (String) getServletContext().getInitParameter("dbUsername");
+                String dbPassword = (String) getServletContext().getInitParameter("dbPassword");
+                StringBuffer url = new StringBuffer((String) getServletContext().getInitParameter("jdbcDriverURL"))
+                        .append("://")
+                        .append((String) getServletContext().getInitParameter("dbHostName"))
+                        .append(":")
+                        .append((String) getServletContext().getInitParameter("dbPort"))
+                        .append("/")
+                        .append((String) getServletContext().getInitParameter("dbName"))
+                        .append((String) getServletContext().getInitParameter("addlParams"));
 
                 conn = DriverManager.getConnection(url.toString(), dbUsername, dbPassword);
-                
+
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
 
@@ -52,40 +53,44 @@ public class Login extends HttpServlet {
                 PreparedStatement ps = conn.prepareStatement(query);
                 ps.setString(1, username);
                 ResultSet rs = ps.executeQuery();
-                
+
                 List<String> userInfo = new LinkedList();
-                while (rs.next())   {
+                while (rs.next()) {
                     userInfo.add(rs.getString("USER_UNAME"));
                     userInfo.add(rs.getString("USER_PASSWORD"));
-                    
+
                     userInfo.add(rs.getString("USER_GIVEN_NAME"));
                     userInfo.add(rs.getString("USER_ADDRESS"));
                     userInfo.add(rs.getString("USER_CONTACT_NUM"));
                 }
-                
+
                 HttpSession session = request.getSession();
 
+                String captchaInput = request.getParameter("captcha-input");
+                Captcha captcha = (Captcha) session.getAttribute("captcha");
+                String verify = captcha.getAnswer();
                 try {
-                    String captchaInput = request.getParameter("captcha-input");
-                    Captcha captcha = (Captcha) session.getAttribute("captcha");
-                    String verify = captcha.getAnswer(); 
-                  
-                    if (userInfo.get(0).equals(username) && userInfo.get(1).equals(password) && captchaInput != null && verify.equals(captchaInput))  {
+                    if (userInfo.get(0).equals(username) && userInfo.get(1).equals(password) && verify.equals(captchaInput)) {
                         session.setAttribute("username", username);
                         session.setAttribute("userInfo", userInfo);
 
                         response.sendRedirect("index.jsp");
-                    }
-                    else    {
+                    } else {
                         throw new Exception();
                     }
+                } catch (Exception e) {
+                    String path;
+                    if (!verify.equals(captchaInput)) {
+                        path = "invalidCaptcha";
+                    }
+                    else
+                        path = "invalidLoginCredentials";
+                            
+                    request.setAttribute(path, "true");
+                    response.sendRedirect("login.jsp?" + path + "=true");
                 }
-                catch (Exception e) {
-                    request.setAttribute("invalidLoginCredentials", "true");
-                    response.sendRedirect("login.jsp?invalidLoginCredentials=true");
-                }
-            }
-            catch (ClassNotFoundException | SQLException e)   {
+
+            } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
         }

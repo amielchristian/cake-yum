@@ -30,6 +30,12 @@
                 out.println("alert('Invalid username or password. Please try again.');");  
                 out.println("</script>");
             }
+            // Ensures invalidation for wrong captcha input
+            if (request.getParameter("invalidCaptcha") != null)    {
+                out.println("<script type=\"text/javascript\">");  
+                out.println("alert('Invalid captcha input. Please try again.');");  
+                out.println("</script>");
+            }
             // Ensures invalidation when redirected from other page
             if (request.getParameter("attemptedGuestAccess") != null)    {
                 out.println("<script type=\"text/javascript\">");  
