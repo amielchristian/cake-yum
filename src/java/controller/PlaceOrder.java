@@ -7,13 +7,9 @@ package controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Enumeration;
+import java.sql.SQLException;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -92,7 +88,7 @@ public class PlaceOrder extends HttpServlet {
                     }
                 }
             }
-            catch (Exception e) {
+            catch (ClassNotFoundException | SQLException e)   {
                 e.printStackTrace();
             }
             session.removeAttribute("cart");
