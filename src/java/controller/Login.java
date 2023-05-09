@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Product;
+import nl.captcha.Captcha;
 
 /**
  *
@@ -63,13 +64,16 @@ public class Login extends HttpServlet {
                 }
                 
                 HttpSession session = request.getSession();
-                if (userInfo.get(0).equals(username) && userInfo.get(1).equals(password))  {
+                String captchaInput = request.getParameter("captcha-input");
+                Captcha captcha = (Captcha) session.getAttribute("captcha");
+                String verify = captcha.getAnswer(); 
+                if (userInfo.get(0).equals(username) && userInfo.get(1).equals(password) && captchaInput != null && verify.equals(captchaInput))  {
                     session.setAttribute("username", username);
                     session.setAttribute("userInfo", userInfo);
 
                     response.sendRedirect("index.jsp");
                 }
-                else    {
+                else {
                     request.setAttribute("invalidLoginCredentials", "true");
                     response.sendRedirect("login.jsp?invalidLoginCredentials=true");
                 }

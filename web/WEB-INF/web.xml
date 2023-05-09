@@ -46,7 +46,6 @@
         <param-name>addlParams</param-name>
         <param-value/>
     </context-param>
-    
     <servlet>
         <servlet-name>Login</servlet-name>
         <servlet-class>controller.Login</servlet-class>
@@ -159,6 +158,10 @@
         <servlet-name>LoginRedirect</servlet-name>
         <servlet-class>controller.LoginRedirect</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CaptchaGenerator</servlet-name>
+        <servlet-class>controller.CaptchaGenerator</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -194,6 +197,10 @@
     <servlet-mapping>
         <servlet-name>LoginRedirect</servlet-name>
         <url-pattern>/LoginRedirect</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CaptchaGenerator</servlet-name>
+        <url-pattern>/CaptchaGenerator</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -54,6 +54,13 @@
                         <label>Password:</label> 
                         <input class="text" type="password" name="password">
                     </div>
+                    
+                    <div class="captcha">
+                        <label for="captcha-input">Enter Captcha</label><br>
+                        <img src="CaptchaGenerator" alt="captcha"><br> 
+                        <input type="text" name="captcha-input" id="captcha" placeholder="Enter Captcha Text">
+                    </div>
+                    <br>                   
                     <div class="row button">
                         <input class="button" type="submit" value="Login">
                     </div>
