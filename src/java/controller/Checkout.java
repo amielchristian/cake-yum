@@ -74,6 +74,15 @@ public class Checkout extends HttpServlet {
                         .append("/")
                         .append((String)getServletContext().getInitParameter("dbName"))
                         .append((String)getServletContext().getInitParameter("addlParams"));
+            // redirect to error page when cart is empty
+            UserGetter ug = new UserGetter(driver, username, password, url.toString());
+            CartGetter cg = new CartGetter(driver, username, password, url.toString());
+            
+            cg.getCart(ug.getUserID((String)session.getAttribute("username"))).isEmpty();
+            if (session.getAttribute("cart") == null)   {
+                response.sendRedirect("error-pages/error500.jsp");
+            }
+            
             // the map generated below represents the entries in the cart that were selected in the previous screen
             List<Object> array = Arrays.asList(request.getParameterMap().keySet().toArray());
             Map<Integer,Integer> cart = new HashMap();
