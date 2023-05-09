@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import nl.captcha.Captcha;
 
 /**
  *
@@ -63,8 +64,13 @@ public class Login extends HttpServlet {
                 }
                 
                 HttpSession session = request.getSession();
+
                 try {
-                    if (userInfo.get(0).equals(username) && userInfo.get(1).equals(password))  {
+                    String captchaInput = request.getParameter("captcha-input");
+                    Captcha captcha = (Captcha) session.getAttribute("captcha");
+                    String verify = captcha.getAnswer(); 
+                  
+                    if (userInfo.get(0).equals(username) && userInfo.get(1).equals(password) && captchaInput != null && verify.equals(captchaInput))  {
                         session.setAttribute("username", username);
                         session.setAttribute("userInfo", userInfo);
 
