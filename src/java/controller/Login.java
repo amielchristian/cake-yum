@@ -71,7 +71,7 @@ public class Login extends HttpServlet {
                 Captcha captcha = (Captcha) session.getAttribute("captcha");
                 String verify = captcha.getAnswer();
                 try {
-                    if (userInfo != null && !userInfo.isEmpty() && userInfo.get(0).equals(username) && userInfo.get(1).equals(password)) {
+                    if (!userInfo.isEmpty() && userInfo.get(0).equals(username) && userInfo.get(1).equals(password)) {
                         if (verify.equals(captchaInput)) {
                             session.setAttribute("username", username);
                             session.setAttribute("userInfo", userInfo);

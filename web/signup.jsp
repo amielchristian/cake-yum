@@ -1,6 +1,6 @@
 <%-- 
-    Document   : login
-    Created on : Nov 24, 2022, 12:43:45 PM
+    Document   : signup
+    Created on : May 10, 2023, 6:49:22 PM
     Author     : chris
 --%>
 
@@ -20,26 +20,14 @@
         <!-- END OF HEADER -->
 
         <%
-            // Invalidates session after returning to login screen
+            // This page shouldn't be accessed by a user who's already signed in
             if (session.getAttribute("username")!=null)    {
                 session.invalidate();
-            }
-            // Ensures invalidation when previous login attempt failed
-            if (request.getParameter("invalidLoginCredentials") != null)    {
-                out.println("<script type=\"text/javascript\">");  
-                out.println("alert('Invalid username or password. Please try again.');");  
-                out.println("</script>");
             }
             // Ensures invalidation for wrong captcha input
             if (request.getParameter("invalidCaptcha") != null)    {
                 out.println("<script type=\"text/javascript\">");  
                 out.println("alert('Invalid captcha input. Please try again.');");  
-                out.println("</script>");
-            }
-            // Ensures invalidation when redirected from other page
-            if (request.getParameter("attemptedGuestAccess") != null)    {
-                out.println("<script type=\"text/javascript\">");  
-                out.println("alert('You must log in first.');");  
                 out.println("</script>");
             }
             
@@ -48,18 +36,29 @@
             response.setHeader("Expires", "0");
         %>
         
-        <div class="center">
+        <div class="center">   
             <div class="container">
-                <div class="title"><span>Log In</span></div>
-                <form action="Login" method="post">
-                    <div>error message goes here</div>
+                <div class="title"><span>Sign Up</span></div>
+                <form action="SignUp" method="post">
                     <div class="row">
-                        <label>Username:</label>
-                        <input type="text" class="text" name="username">
+                        <label>Username:</label> 
+                        <input class="text" type="text" name="username" required>
                     </div>
                     <div class="row">
                         <label>Password:</label> 
-                        <input class="text" type="password" name="password">
+                        <input class="text" type="password" name="password" id="new-password" required>
+                    </div>
+                    <div class="row">
+                        <label>Full Name:</label> 
+                        <input class="text" type="text" name="full-name" required>
+                    </div>
+                    <div class="row">
+                        <label>Address:</label> 
+                        <input class="text" type="text" name="address" required>
+                    </div>
+                    <div class="row">
+                        <label>Mobile Number:</label> 
+                        <input class="text" type="tel" name="mobile-number" pattern="[\d\s()+-]*" required>
                     </div>
                     
                     <div class="captcha">
@@ -69,10 +68,14 @@
                     </div>
                     <br>                   
                     <div class="row button">
-                        <input class="button" type="submit" value="Login">
+                        <input class="button" type="submit" value="Sign Up">
                     </div>
-                    <div>Don't have an account? <a href="signup.jsp">Sign Up</a></div>
+                    <div>Already have an account? <a href="login.jsp">Log In</a></div>
                 </form>
             </div>
+        </div>
+        <script>
+            document.getElementById('new-password').setAttribute('autocomplete', 'new-password');
+        </script>
     </body>
 </html>
