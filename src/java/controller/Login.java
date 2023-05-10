@@ -48,7 +48,8 @@ public class Login extends HttpServlet {
 
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
-
+                Security sec = new Security(getServletContext().getInitParameter("key"), getServletContext().getInitParameter("cipherTransformation"));
+               
                 String query = "SELECT * FROM USERS WHERE USER_UNAME=?";
                 PreparedStatement ps = conn.prepareStatement(query);
                 ps.setString(1, username);
@@ -57,7 +58,7 @@ public class Login extends HttpServlet {
                 List<String> userInfo = new LinkedList();
                 while (rs.next()) {
                     userInfo.add(rs.getString("USER_UNAME"));
-                    userInfo.add(rs.getString("USER_PASSWORD"));
+                    userInfo.add(sec.decrypt(rs.getString("USER_PASSWORD")));
 
                     userInfo.add(rs.getString("USER_GIVEN_NAME"));
                     userInfo.add(rs.getString("USER_ADDRESS"));
