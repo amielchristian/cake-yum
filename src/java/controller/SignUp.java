@@ -57,7 +57,7 @@ public class SignUp extends HttpServlet {
                     String query = "INSERT INTO USERS(USER_UNAME, USER_PASSWORD, USER_GIVEN_NAME, USER_ADDRESS, USER_CONTACT_NUM) VALUES (?,?,?,?,?)";
                     PreparedStatement ps = conn.prepareStatement(query);
                     ps.setString(1, username);
-                    ps.setString(2, password);
+                    ps.setString(2, Security.encrypt(password));
                     ps.setString(3, fullName);
                     ps.setString(4, address);
                     ps.setString(5, celNum);
