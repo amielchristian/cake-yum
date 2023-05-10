@@ -70,26 +70,21 @@ public class Login extends HttpServlet {
                 Captcha captcha = (Captcha) session.getAttribute("captcha");
                 String verify = captcha.getAnswer();
                 try {
-                    if (userInfo.get(0).equals(username) && userInfo.get(1).equals(password) && verify.equals(captchaInput)) {
-                        session.setAttribute("username", username);
-                        session.setAttribute("userInfo", userInfo);
-
-                        response.sendRedirect("index.jsp");
+                    if (userInfo != null && !userInfo.isEmpty() && userInfo.get(0).equals(username) && userInfo.get(1).equals(password)) {
+                        if (verify.equals(captchaInput)) {
+                            session.setAttribute("username", username);
+                            session.setAttribute("userInfo", userInfo);
+                            response.sendRedirect("index.jsp");
+                        } else {
+                            throw new Exception("invalidCaptcha");
+                        }
                     } else {
-                        throw new Exception();
+                        throw new Exception("invalidLoginCredentials");
                     }
                 } catch (Exception e) {
-                    String path;
-                    if (!verify.equals(captchaInput)) {
-                        path = "invalidCaptcha";
-                    }
-                    else
-                        path = "invalidLoginCredentials";
-                            
-                    request.setAttribute(path, "true");
-                    response.sendRedirect("login.jsp?" + path + "=true");
+                    request.setAttribute(e.getMessage(), "true");
+                    response.sendRedirect("login.jsp?" + e.getMessage() + "=true");
                 }
-
             } catch (ClassNotFoundException | SQLException e) {
                 e.printStackTrace();
             }
