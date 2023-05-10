@@ -162,6 +162,10 @@
         <servlet-name>CaptchaGenerator</servlet-name>
         <servlet-class>controller.CaptchaGenerator</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SignUp</servlet-name>
+        <servlet-class>controller.SignUp</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -201,6 +205,10 @@
     <servlet-mapping>
         <servlet-name>CaptchaGenerator</servlet-name>
         <url-pattern>/CaptchaGenerator</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SignUp</servlet-name>
+        <url-pattern>/SignUp</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
