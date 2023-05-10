@@ -20,7 +20,7 @@
         <!-- END OF HEADER -->
 
         <%
-            // This page shouldn't be accessed by a user who's already signed in
+            // This page shouldn't be accessible to a user who's already signed in
             if (session.getAttribute("username")!=null)    {
                 session.invalidate();
             }
