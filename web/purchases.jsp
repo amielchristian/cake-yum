@@ -146,7 +146,6 @@
 
                             String button = request.getParameter("submit");
                             if ("Download Receipt".equals(button)) {
-                                out.println("<h>hello</h1>");
                                 String relativePath = "../../";
                                 String absolutePath = getServletContext().getRealPath(relativePath);
                                 //Generate a PDF
