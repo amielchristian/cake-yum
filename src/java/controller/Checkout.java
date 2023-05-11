@@ -31,8 +31,13 @@ public class Checkout extends HttpServlet {
             response.setHeader("Expires", "0");
             
             HttpSession session = request.getSession();          
+            // prevent user from seeing Checkout page after placing order
             if (session.getAttribute("blockCheckout") != null)  {
                 session.removeAttribute("blockCheckout");
+                response.sendRedirect("cart.jsp");
+            }
+            // prevent user from navigating directly to Checkout page
+            else if (request.getParameterMap().isEmpty())    {
                 response.sendRedirect("cart.jsp");
             }
             

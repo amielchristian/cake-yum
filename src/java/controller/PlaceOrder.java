@@ -33,68 +33,74 @@ public class PlaceOrder extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession(false);
             
-            // for connectivity
-            String driver = getServletContext().getInitParameter("jdbcClassName");
-            String username = getServletContext().getInitParameter("dbUsername");
-            String password = getServletContext().getInitParameter("dbPassword");
+            // prevent servlet from executing before checking out
+            if (session.getAttribute("cart") == null)  {
+                response.sendRedirect("cart.jsp");
+            }
+            else    {
+                // for connectivity
+                String driver = getServletContext().getInitParameter("jdbcClassName");
+                String username = getServletContext().getInitParameter("dbUsername");
+                String password = getServletContext().getInitParameter("dbPassword");
 
-            StringBuffer url = new StringBuffer((String)getServletContext().getInitParameter("jdbcDriverURL"))
-                        .append("://")
-                        .append((String)getServletContext().getInitParameter("dbHostName"))
-                        .append(":")
-                        .append((String)getServletContext().getInitParameter("dbPort"))
-                        .append("/")
-                        .append((String)getServletContext().getInitParameter("dbName"))
-                        .append((String)getServletContext().getInitParameter("addlParams"));
-            
-            // get user ID
-            UserGetter ug = new UserGetter(driver, username, password, url.toString());
-            int userID = ug.getUserID((String)session.getAttribute("username"));
-            
-            try {
-                Map<Integer,Integer> cart = (Map)session.getAttribute("cart");
-                if (!cart.isEmpty())   {
-                    Class.forName(driver);
-                    conn = DriverManager.getConnection(url.toString(), username, password);
+                StringBuffer url = new StringBuffer((String)getServletContext().getInitParameter("jdbcDriverURL"))
+                            .append("://")
+                            .append((String)getServletContext().getInitParameter("dbHostName"))
+                            .append(":")
+                            .append((String)getServletContext().getInitParameter("dbPort"))
+                            .append("/")
+                            .append((String)getServletContext().getInitParameter("dbName"))
+                            .append((String)getServletContext().getInitParameter("addlParams"));
 
-                    // add an entry to the ORDERS table
-                    String q1 = "INSERT INTO ORDERS(USER_ID,ORDER_TIME) VALUES (?,CURRENT_TIMESTAMP)";
-                    PreparedStatement ps1 = conn.prepareStatement(q1);
-                    ps1.setInt(1, userID);
-                    ps1.execute();
+                // get user ID
+                UserGetter ug = new UserGetter(driver, username, password, url.toString());
+                int userID = ug.getUserID((String)session.getAttribute("username"));
 
-                    for (Map.Entry<Integer,Integer> entry : cart.entrySet())   {
-                        Integer productID = entry.getKey();
-                        Integer quantity = entry.getValue();
+                try {
+                    Map<Integer,Integer> cart = (Map)session.getAttribute("cart");
+                    if (!cart.isEmpty())   {
+                        Class.forName(driver);
+                        conn = DriverManager.getConnection(url.toString(), username, password);
 
-                        ProductGetter pg = new ProductGetter(driver, username, password, url.toString());
-                        Product product = pg.getProduct(productID);
-                        Double price = product.getPrice();
+                        // add an entry to the ORDERS table
+                        String q1 = "INSERT INTO ORDERS(USER_ID,ORDER_TIME) VALUES (?,CURRENT_TIMESTAMP)";
+                        PreparedStatement ps1 = conn.prepareStatement(q1);
+                        ps1.setInt(1, userID);
+                        ps1.execute();
 
-                        // add entries to ORDER_PRODUCTS table
-                        String q2 = "INSERT INTO ORDER_PRODUCTS(ORDER_ID,PRODUCT_ID,QUANTITY,COST) VALUES (IDENTITY_VAL_LOCAL(),?,?,?)";
-                        PreparedStatement ps2 = conn.prepareStatement(q2);
-                        ps2.setInt(1, productID);
-                        ps2.setInt(2, quantity);
-                        ps2.setDouble(3, (price * quantity));
-                        ps2.execute();
+                        for (Map.Entry<Integer,Integer> entry : cart.entrySet())   {
+                            Integer productID = entry.getKey();
+                            Integer quantity = entry.getValue();
 
-                        // remove entries from CART table
-                        String q3 = "DELETE FROM CART WHERE USER_ID=? AND PRODUCT_ID=?";
-                        PreparedStatement ps3 = conn.prepareStatement(q3);
-                        ps3.setInt(1, userID);
-                        ps3.setInt(2, productID);
-                        ps3.execute();
+                            ProductGetter pg = new ProductGetter(driver, username, password, url.toString());
+                            Product product = pg.getProduct(productID);
+                            Double price = product.getPrice();
+
+                            // add entries to ORDER_PRODUCTS table
+                            String q2 = "INSERT INTO ORDER_PRODUCTS(ORDER_ID,PRODUCT_ID,QUANTITY,COST) VALUES (IDENTITY_VAL_LOCAL(),?,?,?)";
+                            PreparedStatement ps2 = conn.prepareStatement(q2);
+                            ps2.setInt(1, productID);
+                            ps2.setInt(2, quantity);
+                            ps2.setDouble(3, (price * quantity));
+                            ps2.execute();
+
+                            // remove entries from CART table
+                            String q3 = "DELETE FROM CART WHERE USER_ID=? AND PRODUCT_ID=?";
+                            PreparedStatement ps3 = conn.prepareStatement(q3);
+                            ps3.setInt(1, userID);
+                            ps3.setInt(2, productID);
+                            ps3.execute();
+                        }
                     }
                 }
+                catch (ClassNotFoundException | SQLException e)   {
+                    e.printStackTrace();
+                }
+                session.removeAttribute("cart");
+                session.setAttribute("blockCheckout", true);
+
+                response.sendRedirect("purchases.jsp");
             }
-            catch (ClassNotFoundException | SQLException e)   {
-                e.printStackTrace();
-            }
-            session.removeAttribute("cart");
-            session.setAttribute("blockCheckout", true);
-                
-            response.sendRedirect("purchases.jsp");
         }
     }
 
