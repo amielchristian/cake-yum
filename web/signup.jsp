@@ -24,12 +24,6 @@
             if (session.getAttribute("username")!=null)    {
                 session.invalidate();
             }
-            // Ensures invalidation for wrong captcha input
-            if (request.getParameter("invalidCaptcha") != null)    {
-                out.println("<script type=\"text/javascript\">");  
-                out.println("alert('Invalid captcha input. Please try again.');");  
-                out.println("</script>");
-            }
             
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
             response.setHeader("Pragma", "no-cache");
@@ -40,6 +34,7 @@
             <div class="container">
                 <div class="title"><span>Sign Up</span></div>
                 <form action="SignUp" method="post">
+                    <span class="error-message"></span>
                     <div class="row">
                         <label>Username:</label> 
                         <input class="text" type="text" name="username" required>
@@ -77,5 +72,25 @@
         <script>
             document.getElementById('new-password').setAttribute('autocomplete', 'new-password');
         </script>
+     <% if (request.getParameter("invalid-captcha") != null)    {   %>
+            <script>
+               let message1 = "Invalid captcha attempt.";
+
+               let messageContainer1 = document.querySelector(".error-message");
+
+               messageContainer1.setAttribute('style','color:#8B0000;');
+               messageContainer1.textContent = message1;
+            </script>
+     <% } 
+        if (request.getParameter("username-taken") != null)    {   %>
+            <script>
+               let message1 = "Username taken. Please use another username.";
+
+               let messageContainer1 = document.querySelector(".error-message");
+
+               messageContainer1.setAttribute('style','color:#8B0000;');
+               messageContainer1.textContent = message1;
+            </script>
+     <% } %>
     </body>
 </html>

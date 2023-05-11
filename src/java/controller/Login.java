@@ -77,13 +77,12 @@ public class Login extends HttpServlet {
                             session.setAttribute("userInfo", userInfo);
                             response.sendRedirect("index.jsp");
                         } else {
-                            throw new Exception("invalidCaptcha");
+                            throw new Exception("invalid-captcha");
                         }
                     } else {
-                        throw new Exception("invalidLoginCredentials");
+                        throw new Exception("invalid-login-credentials");
                     }
                 } catch (Exception e) {
-                    request.setAttribute(e.getMessage(), "true");
                     response.sendRedirect("login.jsp?" + e.getMessage() + "=true");
                 }
             } catch (ClassNotFoundException | SQLException e) {

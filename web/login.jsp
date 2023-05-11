@@ -25,7 +25,7 @@
                 session.invalidate();
             }
             // Ensures invalidation when redirected from other page
-            if (request.getParameter("attemptedGuestAccess") != null)    {
+            if (request.getParameter("attempted-guest-access") != null)    {
                 out.println("<script type=\"text/javascript\">");  
                 out.println("alert('You must log in first.');");
                 out.println("window.location.replace('login.jsp')");
@@ -64,7 +64,7 @@
                 </form>
             </div>
         
-     <% if (request.getParameter("invalidLoginCredentials") != null)    {   %>
+     <% if (request.getParameter("invalid-login-credentials") != null)    {   %>
             <script>
                let message1 = "Invalid username or password.";
 
@@ -74,7 +74,7 @@
                messageContainer1.textContent = message1;
             </script>
      <% }
-        if (request.getParameter("invalidCaptcha") != null)    {   %>
+        if (request.getParameter("invalid-captcha") != null)    {   %>
             <script>
                let message1 = "Invalid captcha attempt.";
 

@@ -16,8 +16,7 @@ public class LoginRedirect extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            request.setAttribute("attemptedGuestAccess", "true");
-            response.sendRedirect("login.jsp?attemptedGuestAccess=true");
+            response.sendRedirect("login.jsp?attempted-guest-access=true");
         }
     }
 

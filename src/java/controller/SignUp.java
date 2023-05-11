@@ -54,24 +54,32 @@ public class SignUp extends HttpServlet {
                 String celNum = request.getParameter("mobile-number");
                 Security sec = new Security(getServletContext().getInitParameter("key"), getServletContext().getInitParameter("cipherTransformation"));
                
+                HttpSession session = request.getSession();
+                
+                String captchaInput = request.getParameter("captcha-input");
+                Captcha captcha = (Captcha) session.getAttribute("captcha");
+                String verify = captcha.getAnswer();
                 try {
-                    String query = "INSERT INTO USERS(USER_UNAME, USER_PASSWORD, USER_GIVEN_NAME, USER_ADDRESS, USER_CONTACT_NUM) VALUES (?,?,?,?,?)";
-                    PreparedStatement ps = conn.prepareStatement(query);
-                    ps.setString(1, username);
-                    ps.setString(2, sec.encrypt(password));
-                    ps.setString(3, fullName);
-                    ps.setString(4, address);
-                    ps.setString(5, celNum);
-                    ps.execute();
-                    
-                    request.setAttribute("user-added", true);
-                    response.sendRedirect("login.jsp?user-added=true");
+                    if (verify.equals(captchaInput)) {
+                        String query = "INSERT INTO USERS(USER_UNAME, USER_PASSWORD, USER_GIVEN_NAME, USER_ADDRESS, USER_CONTACT_NUM) VALUES (?,?,?,?,?)";
+                        PreparedStatement ps = conn.prepareStatement(query);
+                        ps.setString(1, username);
+                        ps.setString(2, sec.encrypt(password));
+                        ps.setString(3, fullName);
+                        ps.setString(4, address);
+                        ps.setString(5, celNum);
+                        ps.execute();
+
+                        response.sendRedirect("login.jsp?user-added=true");
+                    }
+                    else    {
+                        response.sendRedirect("signup.jsp?invalid-captcha=true");
+                    }
                 }
                 // this should only happen when the given username is already taken
                 catch (SQLException e)    {
                     e.printStackTrace();
-                    request.setAttribute("username-taken", "true");
-                    response.sendRedirect("login.jsp?username-taken=true");
+                    response.sendRedirect("signup.jsp?username-taken=true");
                 }
             }
             catch (ClassNotFoundException | SQLException e)   {
