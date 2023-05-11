@@ -34,7 +34,7 @@
             <div class="container">
                 <div class="title"><span>Sign Up</span></div>
                 <form action="SignUp" method="post">
-                    <span class="error-message"></span>
+                    <span class="message"></span>
                     <div class="row">
                         <label>Username:</label> 
                         <input class="text" type="text" name="username" required>
@@ -76,7 +76,7 @@
             <script>
                let message1 = "Invalid captcha attempt.";
 
-               let messageContainer1 = document.querySelector(".error-message");
+               let messageContainer1 = document.querySelector(".message");
 
                messageContainer1.setAttribute('style','color:#8B0000;');
                messageContainer1.textContent = message1;
@@ -86,9 +86,19 @@
             <script>
                let message1 = "Username taken. Please use another username.";
 
-               let messageContainer1 = document.querySelector(".error-message");
+               let messageContainer1 = document.querySelector(".message");
 
                messageContainer1.setAttribute('style','color:#8B0000;');
+               messageContainer1.textContent = message1;
+            </script>
+     <% }
+        if (request.getParameter("user-added") != null)    {   %>
+            <script>
+               let message1 = "User added.";
+
+               let messageContainer1 = document.querySelector(".message");
+
+               messageContainer1.setAttribute('style','color:#008B00;');
                messageContainer1.textContent = message1;
             </script>
      <% } %>

@@ -70,7 +70,7 @@ public class SignUp extends HttpServlet {
                         ps.setString(5, celNum);
                         ps.execute();
 
-                        response.sendRedirect("login.jsp?user-added=true");
+                        response.sendRedirect("signup.jsp?user-added=true");
                     }
                     else    {
                         response.sendRedirect("signup.jsp?invalid-captcha=true");
