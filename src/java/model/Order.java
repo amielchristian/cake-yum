@@ -4,17 +4,16 @@
  */
 package model;
 
-import java.sql.Timestamp;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Order {
     private int orderID;
     private int productID;
     private int quantity;
     private double cost;
-    private Date dateTime;
+    private LocalDateTime dateTime;
     
-    public Order(int orderID, int productID, int quantity, double cost, Date dateTime) {
+    public Order(int orderID, int productID, int quantity, double cost, LocalDateTime dateTime) {
         this.orderID = orderID;
         this.productID = productID;
         this.quantity = quantity;
@@ -27,5 +26,5 @@ public class Order {
     public int getProductID() { return productID; }
     public int getQuantity() { return quantity; }
     public double getCost() { return cost; }
-    public Date getDateTime() { return dateTime; }
+    public LocalDateTime getDateTime() { return dateTime; }
 }

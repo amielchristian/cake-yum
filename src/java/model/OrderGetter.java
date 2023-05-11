@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,7 +67,7 @@ public class OrderGetter {
                 ps2.setInt(1, orderID);
                 ResultSet rs2 = ps2.executeQuery();
                 while (rs2.next())  {
-                    Date dateTime = new Date(rs2.getTimestamp("ORDER_TIME").getTime());
+                    LocalDateTime dateTime = rs2.getTimestamp("ORDER_TIME").toLocalDateTime();
                 
                     Order order = new Order(orderID, productID, quantity, price, dateTime);
                     orderInfo.add(order);

@@ -91,13 +91,13 @@
                                 // gets products and metadata associated with each order ID
                                 int orderID = orderIDs.get(i);
                                 ArrayList<Order> orders = og.getOrderInfo(orderID);
-                                Date dateTime = orders.get(0).getDateTime();
+                                LocalDateTime dateTime = orders.get(0).getDateTime();
                                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
 
                                 out.println("<div class=\"order\">");
                                 out.println("<div class=\"order-heading\">");
                                 out.println("<p>Order ID: " + orderID + "</p>");
-                                out.println("<p>Placed on " + dateTime + "</p>");
+                                out.println("<p>Placed on " + dateTime.format(formatter) + "</p>");
                                 out.println("</div>");
 
                                 // Display cart in tabular form
@@ -184,11 +184,11 @@
 
                                         int orderID = orderIDs.get(i);
                                         ArrayList<Order> orders = og.getOrderInfo(orderID);
-                                        Date dateTime = orders.get(0).getDateTime();
+                                        LocalDateTime dateTime = orders.get(0).getDateTime();
                                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
 
                                         Paragraph OrderID = new Paragraph("Order ID: " + orderID);
-                                        Paragraph DateTime = new Paragraph("Placed on: " + dateTime + "\n\n");
+                                        Paragraph DateTime = new Paragraph("Placed on: " + dateTime.format(formatter) + "\n\n");
 
                                         //add to document
                                         document.add(OrderID);
