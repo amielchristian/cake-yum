@@ -92,6 +92,7 @@ public class PlaceOrder extends HttpServlet {
                 e.printStackTrace();
             }
             session.removeAttribute("cart");
+            session.setAttribute("blockCheckout", true);
                 
             response.sendRedirect("purchases.jsp");
         }

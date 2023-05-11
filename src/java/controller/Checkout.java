@@ -26,7 +26,15 @@ public class Checkout extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
+            response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            response.setHeader("Pragma", "no-cache");
+            response.setHeader("Expires", "0");
+            
+            HttpSession session = request.getSession();          
+            if (session.getAttribute("blockCheckout") != null)  {
+                session.removeAttribute("blockCheckout");
+                response.sendRedirect("cart.jsp");
+            }
             
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -77,11 +85,6 @@ public class Checkout extends HttpServlet {
             // redirect to error page when cart is empty
             UserGetter ug = new UserGetter(driver, username, password, url.toString());
             CartGetter cg = new CartGetter(driver, username, password, url.toString());
-            
-            cg.getCart(ug.getUserID((String)session.getAttribute("username"))).isEmpty();
-            if (session.getAttribute("cart") == null)   {
-                response.sendRedirect("error-pages/error500.jsp");
-            }
             
             // the map generated below represents the entries in the cart that were selected in the previous screen
             List<Object> array = Arrays.asList(request.getParameterMap().keySet().toArray());
