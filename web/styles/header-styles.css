@@ -137,3 +137,11 @@ body {
         transform: scale(1.4);
     }
 }
+
+.nav-account    {
+    display: flex;
+    align-items: center;
+}
+.nav-account>img    {
+    margin-right: 0.3em;
+}

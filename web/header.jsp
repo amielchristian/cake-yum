@@ -22,12 +22,20 @@
                 <li class="nav-list"><a href="cart.jsp" class="nav-item">CART</a></li>
                     <%
                         // Login/Logout Scriptlet        
-                        if (session.getAttribute("username") == null) {
-                            out.println("<li class=\"nav-list\"><a href=\"login.jsp\" class=\"nav-item\">LOGIN</a></li>");
-                        } else {
-                            out.println("<li class=\"nav-list\"><a href=\"Account\" class=\"nav-item\"><img height=\"20\" src=\"user.png\">  " + session.getAttribute("username").toString().toUpperCase() + "</a></li>");
-                        }
-                    %>
+                        if (session.getAttribute("username") == null) { %>
+                            <li class="nav-list"><a href="login.jsp" class="nav-item">LOGIN</a></li>
+                     <% } else { %>
+                            <li class="nav-list">
+                                <a href="Account" class="nav-item">
+                                    <div class="nav-account">
+                                        <img height="20" src="user.png">
+                                        <span>
+                                            <%= session.getAttribute("username").toString().toUpperCase() %>
+                                        </span>
+                                    </div>
+                                </a>
+                            </li>
+                     <% } %>
             </ul>
         </nav>
     </header>
