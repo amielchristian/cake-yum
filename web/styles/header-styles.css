@@ -90,6 +90,7 @@ body {
     padding: 2rem;
     color: var(--main-white);
     text-decoration: none;
+    transition: letter-spacing 0.3s ease;
 }
 
 .nav-item:hover {
@@ -111,4 +112,12 @@ body {
         align-items: center;
         background-color: pink;
     }
+}
+
+.nav-account    {
+    display: flex;
+    align-items: center;
+}
+.nav-account>img    {
+    margin-right: 0.3em;
 }
