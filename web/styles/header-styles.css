@@ -10,6 +10,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     --main-turquoise: #B6D8F2;
     --main-pink: #e382ac;
     --main-linen: #F4CFDF;
+    --main-light-pink: #f9d0e1;
     --main-blue-steel: #5784BA;
     --main-blue-sky: #9AC8EB;
     --main-serenade: #FAE7D9;
@@ -30,6 +31,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 html {
+    
+    min-height: 100%;
     box-sizing: border-box;
     font-size: 62.5%;
     background: linear-gradient(315deg, #f4cfdf 3%, #b6d8f2 38%, #f7f6cf 68%, #d9b7c6 98%);
@@ -75,8 +78,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    border-top: 3px solid var(--main-white);
-    border-image: linear-gradient(to left, var( --main-blue-sky) 1%,white 50%,var( --main-blue-sky) 100%)
+     border-image: linear-gradient(to left, var(--main-blue-sky) 1%,white 50%,var( --main-blue-sky) 100%)
         100% 0 100% 0/3px 0 3px 0 stretch;
 }
 
@@ -90,6 +92,7 @@ body {
     padding: 2rem;
     color: var(--main-white);
     text-decoration: none;
+    transition: letter-spacing 0.3s ease;
 }
 
 .nav-item:hover {
@@ -104,14 +107,33 @@ body {
     width: 100%;
 }
 
-@media screen and (max-width: 700px) {
-    .nav-ul {
+.logo {
+    overflow: hidden;
+}
+
+@media screen and (max-width: 750px) {
+     .nav-ul {
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: pink;
+        background-color: var(--main-blue-sky);
+        border-top: 4px solid var(--main-white) !important;
+        border-image: none;
+         
     }
+    .nav-item {
+        padding: 4px;
+        margin: 10px 0px;
+        font-size: 40%;
+    }
+    .logo {
+        height: 80px;
+    }
+}
+
+
+@media screen and (max-width: 400px) {
     #logo-img {
-        width: 150%;
+        transform: scale(1.4);
     }
 }
