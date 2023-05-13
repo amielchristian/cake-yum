@@ -75,7 +75,7 @@ public class Account extends HttpServlet {
                 out.println("</table>");
 
                 out.println("<h4><a class=\"logout\" href=\"delete.jsp\">Delete Account</a></h4>");
-                out.println("<h4><a class=\"logout\" href=\"Logout\">Logout</a></h4>");
+                out.println("<h4 class=\"last\"><a class=\"logout\" href=\"Logout\">Logout</a></h4>");
                 out.println("</div>");
             }
         }
