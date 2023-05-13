@@ -23,7 +23,7 @@
                     <%
                         // Login/Logout Scriptlet        
                         if (session.getAttribute("username") == null) { %>
-                            <li class="nav-list"><a href="login.jsp" class="nav-item">LOGIN</a></li>");
+                            <li class="nav-list"><a href="login.jsp" class="nav-item">LOGIN</a></li>
                      <% } else { %>
                             <li class="nav-list">
                                 <a href="Account" class="nav-item">
