@@ -3,10 +3,6 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
 */
-/* 
-    Created on : Dec 4, 2022, 9:12:34 PM
-    Author     : Charles
-*/
 
 /* Custom properties/variables  */
 :root {
@@ -36,7 +32,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 html {
     box-sizing: border-box;
     font-size: 62.5%;
-    background-color: var(--main-white);
+    background: linear-gradient(315deg, #f4cfdf 3%, #b6d8f2 38%, #f7f6cf 68%, #d9b7c6 98%);
 }
 
 /* Base styles */
@@ -53,11 +49,10 @@ body {
     width: 100%;
     display: flex;
     flex-direction: column;
-    background-color: var(--main-blue-sky);
+    background-color: var(--main-blue-steel);
 }
 
 .logo {
-    padding-top: 20px;
     width: 100%;
     font-family: 'Mogra', cursive;
     color: var(--main-white);
@@ -67,30 +62,22 @@ body {
     border-bottom: 1px solid var(--main-white);
 }
 
- h1#logo-name {
-        font-size: 250%;
-    }
 
 #logo-img {
-    width: 6%;
-    height: auto;
-    padding-bottom: 10px;
-}
-
-#logo-name {
-    font-weight: 900;
-    font-size: 5vw;
-    outline: 3px black;
+    width: 100%;
 }
 
 .nav-ul {
     font-weight: bolder;
     padding: 0 50px;
-    background-color: var(--main-blue-sky);
+    background-color: var(--main-blue-steel);
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    border-top: 3px solid var(--main-white);
+    border-image: linear-gradient(to left, var( --main-blue-sky) 1%,white 50%,var( --main-blue-sky) 100%)
+        100% 0 100% 0/3px 0 3px 0 stretch;
 }
 
 .nav-list {
@@ -106,7 +93,9 @@ body {
 }
 
 .nav-item:hover {
-    color: var(--main-blue-steel);
+    color: var(--main-yellow);
+    letter-spacing: 0.3em;
+    transition: letter-spacing 0.3s ease;
 }
 
 .navbar {
@@ -115,38 +104,11 @@ body {
     width: 100%;
 }
 
-
 @media screen and (max-width: 700px) {
     .nav-ul {
         display: flex;
         flex-direction: column;
         align-items: center;
         background-color: pink;
-    }
-
-    /* header */
-
-    #header {
-        font-size: 100%;
-        padding: 10px 0;
-    }
-    .logo {
-        padding: 10px;
-        border: none;
-    }
-
-
-    img#logo-img {
-        width: 10%;
-        margin: 10px;
-    }
-    
-    .logo {
-        width: 100%;
-        font-family: 'Mogra', cursive;
-        color: var(--main-white);
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 }

@@ -1,13 +1,8 @@
-<%-- 
-    Document   : header
-    Created on : Nov 30, 2022, 4:32:28 PM
-    Author     : Charles
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,9 +12,7 @@
     </head>
     <header id="header">
         <div class="logo">
-            <img src="images/logo/cupcake.png" alt="logo" id="logo-img"/>
-            <h1 id="logo-name">CakeYum</h1>
-            <img src="images/logo/cupcake.png" alt="logo" id="logo-img"/>
+            <img src="images/logo/header.gif" id="logo-img"/>
         </div>
         <nav class="navbar">
             <ul class="nav-ul">

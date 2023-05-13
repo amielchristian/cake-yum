@@ -127,7 +127,7 @@ nav img {
     border-radius: 20px;
     pddiong: 10px;
     background-repeat: repeat-x;
-    animation: animatedBackground 15s linear alternate infinite;
+    animation: animatedBackground 15s linear alternate infinite !important;
 }
 
 @keyframes animatedBackground {
@@ -224,3 +224,14 @@ nav img {
         transform:translateX(0%);
     }
 }
+
+@media screen and (max-width: 768px) {
+    .main {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+    .flyIn {
+        font-size:20px;
+    }
+}
+
