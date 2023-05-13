@@ -111,4 +111,7 @@ body {
         align-items: center;
         background-color: pink;
     }
+    #logo-img {
+        width: 150%;
+    }
 }

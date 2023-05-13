@@ -176,28 +176,13 @@
 
                                     // instantiating a PdfCanvas object 
                                     LineSeparator ls = new LineSeparator();
-                                    int ctr = 0;
 
                                     for (int i = 0; i <= orderCount - 1; i++) {
 
                                         document.add(new Chunk(ls));
+
                                         int orderID = orderIDs.get(i);
                                         ArrayList<Order> orders = og.getOrderInfo(orderID);
-                                        if (orders.size() == 1) {
-                                            ctr += orders.size() + 5;
-                                        } else if (orders.size() == 2) {
-                                            ctr += orders.size() + 4;
-                                        } else if (orders.size() == 3) {
-                                            ctr += orders.size() + 3;
-                                        } else if (orders.size() == 4) {
-                                            ctr += orders.size() + 2;
-                                        }
-
-                                        if (ctr >= 20) {
-                                            document.newPage();
-                                            ctr = 0;
-                                        }
-
                                         LocalDateTime dateTime = orders.get(0).getDateTime();
                                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss");
 
