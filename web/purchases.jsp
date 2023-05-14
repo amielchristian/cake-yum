@@ -141,7 +141,7 @@
                                 out.println("<br>");
 
                             }
-                            out.println("<form method=\'post\' action=\'CakeYum_Receipt\'><input type=\"submit\" value=\"Download Receipt\" class = \"button\"name=\"submit\"></form>");
+                            out.println("<form method=\'post\' action=\'CakeYum_Receipt\' target=\"_blank\"><input type=\"submit\" value=\"Download Receipt\" class = \"button\"name=\"submit\"></form>");
                             out.println("<br>");
 
                         }

@@ -11,8 +11,8 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 
 public class CartGetter {
-    HashMap<Integer,Integer> map;
-    Connection conn;
+    private HashMap<Integer,Integer> map;
+    private Connection conn;
     
     public CartGetter(String driver, String username, String password, String url)    {
         try {

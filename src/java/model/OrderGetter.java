@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class OrderGetter {
-    HashMap<Integer,Integer> map;
-    Connection conn;
+    private HashMap<Integer,Integer> map;
+    private Connection conn;
     
     public OrderGetter(String driver, String username, String password, String url)    {
         try {

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import org.apache.commons.codec.binary.Base64;
 
 public class ProductGetter {
-    Connection conn;
+    private Connection conn;
     
     public ProductGetter(String driver, String username, String password, String url)    {
         try {

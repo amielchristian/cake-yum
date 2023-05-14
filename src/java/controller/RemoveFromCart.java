@@ -19,7 +19,7 @@ import model.ProductGetter;
 import model.UserGetter;
 
 public class RemoveFromCart extends HttpServlet {
-    Connection conn;
+    private Connection conn;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

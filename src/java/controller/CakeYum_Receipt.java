@@ -34,8 +34,7 @@ import model.*;
  * @author chris
  */
 public class CakeYum_Receipt extends HttpServlet {
-
-    Connection conn;
+    private Connection conn;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,7 +42,6 @@ public class CakeYum_Receipt extends HttpServlet {
         if (session.getAttribute("username") == null) {
             response.sendRedirect("LoginRedirect");
         } else {
-
             response.setContentType("application/pdf");
             OutputStream os = response.getOutputStream();
             try {

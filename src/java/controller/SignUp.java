@@ -25,7 +25,7 @@ import nl.captcha.Captcha;
  * @author chris
  */
 public class SignUp extends HttpServlet {
-    Connection conn;
+    private Connection conn;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
