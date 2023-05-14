@@ -12,6 +12,7 @@
         <title>Error 500</title>
         <link href="../styles/error-page-styles.css" rel="stylesheet" type="text/css"/>
         <link href="styles/error-page-styles.css" rel="stylesheet" type="text/css"/>
+        <link rel="icon" href="/CakeYum/images/error-page/cupcake.png"/>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
