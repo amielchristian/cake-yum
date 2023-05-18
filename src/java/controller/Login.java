@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.AccountAccessor;
 import nl.captcha.Captcha;
 
 /**
@@ -32,6 +33,7 @@ public class Login extends HttpServlet {
             try {
                 Class.forName((String) getServletContext().getInitParameter("jdbcClassName"));
 
+                String driver = getServletContext().getInitParameter("jdbcClassName");
                 String dbUsername = (String) getServletContext().getInitParameter("dbUsername");
                 String dbPassword = (String) getServletContext().getInitParameter("dbPassword");
                 StringBuffer url = new StringBuffer((String) getServletContext().getInitParameter("jdbcDriverURL"))
@@ -42,27 +44,13 @@ public class Login extends HttpServlet {
                         .append("/")
                         .append((String) getServletContext().getInitParameter("dbName"))
                         .append((String) getServletContext().getInitParameter("addlParams"));
-
-                conn = DriverManager.getConnection(url.toString(), dbUsername, dbPassword);
-
+                
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
                 Security sec = new Security(getServletContext().getInitParameter("key"), getServletContext().getInitParameter("cipherTransformation"));
                
-                String query = "SELECT * FROM USERS WHERE USER_UNAME=?";
-                PreparedStatement ps = conn.prepareStatement(query);
-                ps.setString(1, username);
-                ResultSet rs = ps.executeQuery();
-
-                List<String> userInfo = new LinkedList();
-                while (rs.next()) {
-                    userInfo.add(rs.getString("USER_UNAME"));
-                    userInfo.add(sec.decrypt(rs.getString("USER_PASSWORD")));
-
-                    userInfo.add(rs.getString("USER_GIVEN_NAME"));
-                    userInfo.add(rs.getString("USER_ADDRESS"));
-                    userInfo.add(rs.getString("USER_CONTACT_NUM"));
-                }
+                AccountAccessor aa = new AccountAccessor(driver, dbUsername, dbPassword, url.toString());
+                List<String> userInfo = aa.login(username);
 
                 HttpSession session = request.getSession();
 
@@ -70,7 +58,7 @@ public class Login extends HttpServlet {
                 Captcha captcha = (Captcha) session.getAttribute("captcha");
                 String verify = captcha.getAnswer();
                 try {
-                    if (!userInfo.isEmpty() && userInfo.get(0).equals(username) && userInfo.get(1).equals(password)) {
+                    if (!userInfo.isEmpty() && userInfo.get(0).equals(username) && userInfo.get(1).equals(sec.encrypt(password))) {
                         if (verify.equals(captchaInput)) {
                             session.setAttribute("username", username);
                             session.setAttribute("userInfo", userInfo);

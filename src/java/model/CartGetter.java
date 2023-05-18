@@ -8,7 +8,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 
 public class CartGetter {
     private HashMap<Integer,Integer> map;
@@ -45,5 +47,36 @@ public class CartGetter {
         }
         
         return cartContents;
+    }
+    
+    public void addToCart(Map<Integer,Integer> cartContents, int productID, int quantity, int userID) throws SQLException {
+        // if there is an entry in the database that contains both the user ID and the product ID, then quantity is updated
+        if (cartContents.containsKey(productID))    {
+            System.out.println("crash");
+            String query = "UPDATE CART SET QUANTITY=? WHERE USER_ID=? AND PRODUCT_ID=?";
+            PreparedStatement ps = conn.prepareCall(query);
+            ps.setInt(1, quantity);
+            ps.setInt(2, userID);
+            ps.setInt(3, productID);
+            ps.executeUpdate();
+        }
+        // if there is no such entry, then an entry is added to the database
+        else    {
+            System.out.println("boogsh");
+            String query = "INSERT INTO CART(USER_ID, PRODUCT_ID, QUANTITY) VALUES (?,?,?)";
+            PreparedStatement ps = conn.prepareCall(query);
+            ps.setInt(1, userID);
+            ps.setInt(2,productID);
+            ps.setInt(3, quantity);
+            ps.executeUpdate();
+        }
+    }
+    
+    public void removeFromCart(int productID, int userID) throws SQLException  {
+        String query = "DELETE FROM CART WHERE USER_ID=? AND PRODUCT_ID=?";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setInt(1, userID);
+        ps.setInt(2, productID);
+        ps.executeUpdate();
     }
 }

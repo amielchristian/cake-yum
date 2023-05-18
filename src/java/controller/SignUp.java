@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.AccountAccessor;
 import nl.captcha.Captcha;
 
 /**
@@ -32,8 +33,7 @@ public class SignUp extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             try {
-                Class.forName((String)getServletContext().getInitParameter("jdbcClassName"));
-
+                String driver = getServletContext().getInitParameter("jdbcClassName");
                 String dbUsername = (String)getServletContext().getInitParameter("dbUsername");
                 String dbPassword = (String)getServletContext().getInitParameter("dbPassword");
                 StringBuffer url = new StringBuffer((String)getServletContext().getInitParameter("jdbcDriverURL"))
@@ -61,15 +61,9 @@ public class SignUp extends HttpServlet {
                 String verify = captcha.getAnswer();
                 try {
                     if (verify.equals(captchaInput)) {
-                        String query = "INSERT INTO USERS(USER_UNAME, USER_PASSWORD, USER_GIVEN_NAME, USER_ADDRESS, USER_CONTACT_NUM) VALUES (?,?,?,?,?)";
-                        PreparedStatement ps = conn.prepareStatement(query);
-                        ps.setString(1, username);
-                        ps.setString(2, sec.encrypt(password));
-                        ps.setString(3, fullName);
-                        ps.setString(4, address);
-                        ps.setString(5, celNum);
-                        ps.execute();
-
+                        AccountAccessor aa = new AccountAccessor(driver, dbUsername, dbPassword, url.toString());
+                        aa.signup(username, sec.encrypt(password), fullName, address, celNum);
+                        
                         response.sendRedirect("signup.jsp?user-added=true");
                     }
                     else    {
@@ -82,7 +76,7 @@ public class SignUp extends HttpServlet {
                     response.sendRedirect("signup.jsp?username-taken=true");
                 }
             }
-            catch (ClassNotFoundException | SQLException e)   {
+            catch (SQLException e)   {
                 e.printStackTrace();
             }
         }

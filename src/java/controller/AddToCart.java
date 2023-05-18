@@ -70,24 +70,11 @@ public class AddToCart extends HttpServlet {
                     Class.forName(driver);
                     conn = DriverManager.getConnection(url.toString(), username, password);
                     
-                    // if there is an entry in the database that contains both the user ID and the product ID, then quantity is updated
-                    if (cartContents.containsKey(productID))    {
-                        String query = "UPDATE CART SET QUANTITY=? WHERE USER_ID=? AND PRODUCT_ID=?";
-                        PreparedStatement ps = conn.prepareCall(query);
-                        ps.setInt(1, quantity);
-                        ps.setInt(2, userID);
-                        ps.setInt(3, productID);
-                        ps.executeUpdate();
-                    }
-                    // if there is no such entry, then an entry is added to the database
-                    else    {
-                        String query = "INSERT INTO CART(USER_ID,PRODUCT_ID,QUANTITY) VALUES ((SELECT USER_ID FROM USERS WHERE USER_UNAME=?),?,?)";
-                        PreparedStatement ps = conn.prepareCall(query);
-                        ps.setString(1, (String)session.getAttribute("username"));
-                        ps.setInt(2,productID);
-                        ps.setInt(3, quantity);
-                        ps.executeUpdate();
-                    }
+                    out.println(userID);
+                    out.println(productID);
+                    out.println(quantity);
+                    out.println(cartContents.toString());
+                    cg.addToCart(cartContents, productID, quantity, userID);
 
                     response.sendRedirect("cart.jsp");
                 }

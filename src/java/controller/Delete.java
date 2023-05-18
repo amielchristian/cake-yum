@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.AccountAccessor;
 import model.UserGetter;
 import nl.captcha.Captcha;
 
@@ -56,19 +57,8 @@ public class Delete extends HttpServlet {
                 UserGetter ug = new UserGetter(driver, username, password, url.toString());
                 int userID = ug.getUserID((String)session.getAttribute("username"));
                 
-                // create DELETE queries
-                List<String> queries = new ArrayList<>();
-                queries.add("DELETE FROM ORDER_PRODUCTS WHERE ORDER_ID IN (SELECT ORDER_ID FROM ORDERS WHERE USER_ID=?)");
-                queries.add("DELETE FROM ORDERS WHERE USER_ID=?");
-                queries.add("DELETE FROM CART WHERE USER_ID=?");
-                queries.add("DELETE FROM USERS WHERE USER_ID=?");
-                
-                // execute DELETE queries
-                for (String query : queries)    {
-                    PreparedStatement ps = conn.prepareStatement(query);
-                    ps.setInt(1, userID);
-                    ps.execute();
-                }
+                AccountAccessor aa = new AccountAccessor(driver, username, password, url.toString());
+                aa.delete(userID);
                 
                 // clear session and "log out"
                 session.removeAttribute("username");

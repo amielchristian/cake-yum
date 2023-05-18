@@ -4,17 +4,21 @@
  */
 package model;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import org.apache.commons.codec.binary.Base64;
 
 public class OrderGetter {
     private HashMap<Integer,Integer> map;
@@ -78,5 +82,40 @@ public class OrderGetter {
             e.printStackTrace();
         }
         return orderInfo;
+    }
+    
+    public void placeOrder(Map<Integer,Integer> cart, int userID) throws SQLException {
+        // add an entry to the ORDERS table
+        String q1 = "INSERT INTO ORDERS(USER_ID,ORDER_TIME) VALUES (?,CURRENT_TIMESTAMP)";
+        PreparedStatement ps1 = conn.prepareStatement(q1);
+        ps1.setInt(1, userID);
+        ps1.execute();
+
+        for (Map.Entry<Integer,Integer> entry : cart.entrySet())   {
+            Integer productID = entry.getKey();
+            Integer quantity = entry.getValue();
+
+            String query = "SELECT * FROM PRODUCTS WHERE PRODUCT_ID=?";
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setInt(1, productID);
+            ResultSet rs = ps.executeQuery();
+            rs.next();
+            double price = rs.getDouble("PRODUCT_PRICE");
+
+            // add entries to ORDER_PRODUCTS table
+            String q2 = "INSERT INTO ORDER_PRODUCTS(ORDER_ID,PRODUCT_ID,QUANTITY,COST) VALUES (IDENTITY_VAL_LOCAL(),?,?,?)";
+            PreparedStatement ps2 = conn.prepareStatement(q2);
+            ps2.setInt(1, productID);
+            ps2.setInt(2, quantity);
+            ps2.setDouble(3, (price * quantity));
+            ps2.execute();
+
+            // remove entries from CART table
+            String q3 = "DELETE FROM CART WHERE USER_ID=? AND PRODUCT_ID=?";
+            PreparedStatement ps3 = conn.prepareStatement(q3);
+            ps3.setInt(1, userID);
+            ps3.setInt(2, productID);
+            ps3.execute();
+        }
     }
 }

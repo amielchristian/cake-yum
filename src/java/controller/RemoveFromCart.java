@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.CartGetter;
 import model.ProductGetter;
 import model.UserGetter;
 
@@ -53,11 +54,8 @@ public class RemoveFromCart extends HttpServlet {
                 Class.forName(driver);
                 conn = DriverManager.getConnection(url.toString(), username, password);
                 
-                String query = "DELETE FROM CART WHERE USER_ID=? AND PRODUCT_ID=?";
-                PreparedStatement ps = conn.prepareStatement(query);
-                ps.setInt(1, userID);
-                ps.setInt(2, productID);
-                ps.executeUpdate();
+                CartGetter cg = new CartGetter(driver, username, password, url.toString());
+                cg.removeFromCart(productID, userID);
                 
                 response.sendRedirect("cart.jsp");
             }
