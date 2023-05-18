@@ -12,8 +12,8 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
+// this class is for accessing a user's cart
 public class CartGetter {
-    private HashMap<Integer,Integer> map;
     private Connection conn;
     
     public CartGetter(String driver, String username, String password, String url)    {
