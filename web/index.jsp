@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home</title>
-        <link rel="icon" href="/CakeYum/images/error-page/cupcake.png"/>
+        <link rel="icon" href="/CakeYum/images/logo/cupcake.png"/>
         <link href="https://fonts.googleapis.com/css2?family=Mogra&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="styles/index-styles.css">
         <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet'>
