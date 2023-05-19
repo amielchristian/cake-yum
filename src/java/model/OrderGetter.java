@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Map;
 
-// this class is for retrieving a user's previously placed orders
+// this class is for placing orders and retrieving a user's previously placed orders
 public class OrderGetter {
     private Connection conn;
     

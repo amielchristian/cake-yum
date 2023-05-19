@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-// this class is for accessing a user's cart
+// this class is for accessing a user's cart, for both adding and removing
 public class CartGetter {
     private Connection conn;
     
