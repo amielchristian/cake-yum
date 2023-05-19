@@ -17,7 +17,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Products</title> 
+        <title>Products - CakeYum</title> 
         <link rel="icon" href="/CakeYum/images/logo/cupcake.png"/>
         <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet'>
         <link rel="stylesheet" href="styles/products-styles.css">

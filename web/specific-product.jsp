@@ -10,7 +10,7 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Specific Dessert Product</title>
+        <title><%= (String) request.getAttribute("name")%> - CakeYum</title>
         <link rel="icon" href="/CakeYum/images/logo/cupcake.png"/>
         <link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet'>
         <link rel="stylesheet" href="styles/specific-product-styles.css">

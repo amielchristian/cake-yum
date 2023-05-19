@@ -11,7 +11,7 @@
         <link rel="icon" href="/CakeYum/images/logo/cupcake.png"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Your Account</title>
+        <title>Your Account - CakeYum</title>
     </head>
     <body>
         <%
