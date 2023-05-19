@@ -10,13 +10,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class LoginRedirect extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            response.sendRedirect("login.jsp?attempted-guest-access=true");
+            HttpSession session = request.getSession();
+            
+            if (session.getAttribute("username") == null)   {
+                response.sendRedirect("login.jsp?attempted-guest-access=true");
+            }
+            else    {
+                response.sendRedirect("index.jsp");
+            }
         }
     }
 

@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import org.apache.commons.codec.binary.Base64;
 
+// this class is for retrieving product information, represented by Product objects
 public class ProductGetter {
     private Connection conn;
     

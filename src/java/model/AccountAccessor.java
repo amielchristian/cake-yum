@@ -18,6 +18,8 @@ import java.util.List;
  *
  * @author chris
  */
+
+// this class is used for account operations that involve making database calls, including Log In, Delete Account, and Sign Up
 public class AccountAccessor {
     private Connection conn;
     

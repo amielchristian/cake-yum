@@ -4,24 +4,17 @@
  */
 package model;
 
-import java.sql.Blob;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
-import org.apache.commons.codec.binary.Base64;
 
+// this class is for retrieving a user's previously placed orders
 public class OrderGetter {
-    private HashMap<Integer,Integer> map;
     private Connection conn;
     
     public OrderGetter(String driver, String username, String password, String url)    {

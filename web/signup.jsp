@@ -24,6 +24,7 @@
             // This page shouldn't be accessible to a user who's already signed in
             if (session.getAttribute("username")!=null)    {
                 session.invalidate();
+                response.sendRedirect("login.jsp");
             }
             
             response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");

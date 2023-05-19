@@ -24,6 +24,7 @@
             // Invalidates session after returning to login screen
             if (session.getAttribute("username")!=null)    {
                 session.invalidate();
+                response.sendRedirect("index.jsp");
             }
             // Ensures invalidation when redirected from other page
             if (request.getParameter("attempted-guest-access") != null)    {

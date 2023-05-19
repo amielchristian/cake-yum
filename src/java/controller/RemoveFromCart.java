@@ -29,38 +29,44 @@ public class RemoveFromCart extends HttpServlet {
             HttpSession session = request.getSession(false);
             String removedProduct = request.getParameter("remove");
             
-            try {
-                // connectivity stuff
-                String driver = getServletContext().getInitParameter("jdbcClassName");
-                String username = getServletContext().getInitParameter("dbUsername");
-                String password = getServletContext().getInitParameter("dbPassword");
-
-                StringBuffer url = new StringBuffer((String)getServletContext().getInitParameter("jdbcDriverURL"))
-                            .append("://")
-                            .append((String)getServletContext().getInitParameter("dbHostName"))
-                            .append(":")
-                            .append((String)getServletContext().getInitParameter("dbPort"))
-                            .append("/")
-                            .append((String)getServletContext().getInitParameter("dbName"))
-                            .append((String)getServletContext().getInitParameter("addlParams"));
-                
-                // preliminary calls to the database for getting user ID and product ID
-                UserGetter ug = new UserGetter(driver, username, password, url.toString());
-                ProductGetter pg = new ProductGetter(driver, username, password, url.toString());
-                Integer userID = ug.getUserID((String)session.getAttribute("username"));
-                Integer productID = pg.getProduct(removedProduct).getID();
-                
-                // main call to database
-                Class.forName(driver);
-                conn = DriverManager.getConnection(url.toString(), username, password);
-                
-                CartGetter cg = new CartGetter(driver, username, password, url.toString());
-                cg.removeFromCart(productID, userID);
-                
+            // prevent user from navigating directly to this servlet
+            if (request.getParameterMap().isEmpty())    {
                 response.sendRedirect("cart.jsp");
             }
-            catch (ClassNotFoundException | SQLException e)   {
-                e.printStackTrace();
+            else    {
+                try {
+                    // connectivity stuff
+                    String driver = getServletContext().getInitParameter("jdbcClassName");
+                    String username = getServletContext().getInitParameter("dbUsername");
+                    String password = getServletContext().getInitParameter("dbPassword");
+
+                    StringBuffer url = new StringBuffer((String)getServletContext().getInitParameter("jdbcDriverURL"))
+                                .append("://")
+                                .append((String)getServletContext().getInitParameter("dbHostName"))
+                                .append(":")
+                                .append((String)getServletContext().getInitParameter("dbPort"))
+                                .append("/")
+                                .append((String)getServletContext().getInitParameter("dbName"))
+                                .append((String)getServletContext().getInitParameter("addlParams"));
+
+                    // preliminary calls to the database for getting user ID and product ID
+                    UserGetter ug = new UserGetter(driver, username, password, url.toString());
+                    ProductGetter pg = new ProductGetter(driver, username, password, url.toString());
+                    Integer userID = ug.getUserID((String)session.getAttribute("username"));
+                    Integer productID = pg.getProduct(removedProduct).getID();
+
+                    // main call to database
+                    Class.forName(driver);
+                    conn = DriverManager.getConnection(url.toString(), username, password);
+
+                    CartGetter cg = new CartGetter(driver, username, password, url.toString());
+                    cg.removeFromCart(productID, userID);
+
+                    response.sendRedirect("cart.jsp");
+                }
+                catch (ClassNotFoundException | SQLException e)   {
+                    e.printStackTrace();
+                }
             }
         }
     }

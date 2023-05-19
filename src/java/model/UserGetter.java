@@ -8,10 +8,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.HashMap;
 
+// this class is really just for getting a user's ID
 public class UserGetter {
-    private HashMap<Integer,Integer> map;
     private Connection conn;
     
     public UserGetter(String driver, String username, String password, String url)    {

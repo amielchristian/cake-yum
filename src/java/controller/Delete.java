@@ -36,6 +36,9 @@ public class Delete extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             try {
                 HttpSession session = request.getSession();
+                if (session.getAttribute("username") == null)   {
+                    response.sendRedirect("index.jsp");
+                }
                 
                 // for connectivity
                 String driver = getServletContext().getInitParameter("jdbcClassName");
