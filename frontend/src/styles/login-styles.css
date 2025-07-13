@@ -1,0 +1,142 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+ 
+   
+}
+
+html {
+  background: linear-gradient(135deg, #F4CFDF, #B6D8F2, #F4CFDF) !important;
+}
+html,body{
+  overflow-y: scroll; 
+}
+body{
+  font-family: "century gothic", sans-serif;
+  overflow: hidden;
+  background-size: 400%;
+  padding-bottom: 200px;
+  
+}
+
+.center{
+  max-width: 440px;
+  padding: 0 20px;
+  margin: 5% auto;
+  
+}
+.container{
+    
+  width: 100%;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px 1px rgba(0,0,0,0.1);
+}
+.container .title{
+  height: 90px;
+  background: #5784ba;
+  
+  
+  border-radius: 15px 15px 0 0;
+  color: white;
+  font-size: 30px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container form{
+  padding: 30px 25px 25px 25px;
+}
+.container form .row{
+  height: 45px;
+  margin-bottom: 15px;
+  position: relative;
+}
+.container form .row input{
+  height: 100%;
+  width: 100%;
+  outline: none;
+  padding-left: 65px;
+  border-radius: 5px;
+  border: 1px solid lightgrey;
+  font-size: 16px;
+  background-color: #d5e0e8;
+  transition: all 0.3s ease;
+  font-family: "century gothic", sans-serif;
+  
+}
+.container form .row .text{
+  color: black;
+  text-align: left;  
+  padding-left: 110px;
+}
+form .row input:focus{
+  border-color: #5784ba;
+  box-shadow: inset 0px 0px 2px 2px rgba(26,188,156,0.25);
+}
+form .row input::placeholder{
+  color: #999;
+}
+.container form .row label{
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  color: white;
+  font-size: 18px;
+  background: #5784ba;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container form .button input{
+  color: #fff;
+  font-size: 20px;
+  font-weight: 500;
+  padding-left: 0px;
+  background:#5784ba;
+  
+  cursor: pointer;
+}
+form .button input:hover{
+  background: #3b5b82;
+}
+.invalid p{
+    margin: 5px 5px;
+    font-size: 15px;
+    
+}
+.invalid{
+    text-align: center;
+   
+    
+}
+
+.captcha input[type="text"] {
+    width: 100%;
+    max-width: 200px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+body{
+    
+    padding:0;
+    margin-bottom: 20%;
+    
+}
+.center{
+    margin: 20% auto;
+}
+}

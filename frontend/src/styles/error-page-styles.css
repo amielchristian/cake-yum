@@ -1,0 +1,82 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Dec 4, 2022, 10:17:30 PM
+    Author     : Charles
+*/
+
+/* Custom properties/variables  */
+:root {
+    --main-yellow: #F7F6CF;
+    --main-turquoise: #B6D8F2;
+    --main-linen: #F4CFDF;
+    --main-pink: #f7c1da;
+    --main-blue-steel: #5784BA;
+    --main-blue-sky: #9AC8EB;
+    --main-serenade: #FAE7D9;
+    --main-white: #F1F5F9;
+}
+
+/* Base reset */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* box-sizing and font sizing */
+*,*::before,*::after {
+    box-sizing: inherit;
+}
+
+html {
+    background-color: var(--main-blue-sky);
+}
+
+h1, h2 {
+    font-family: 'Fredoka One', cursive;
+}
+
+h1, h2, p {
+    color: var(--main-pink);
+    text-align: center;
+}
+
+h1 {
+    font-size: 150px;
+}
+
+h2 {
+    font-size: 80px;
+    margin-top: -30px;
+}
+
+p {
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+}
+
+.container {
+    background: var(--main-white);
+    width: 800px;
+    height: 470px;
+    margin: 0 auto;
+    margin-top: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    box-shadow: -3px 3px 5px 2px var(--main-blue-steel);
+}
+
+#error-cupcake {
+    height: 300px;
+    weight: 300px;
+}
+
+.error-text {
+    padding: 30px;
+}
+
