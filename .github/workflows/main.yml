@@ -2,7 +2,7 @@ name: Deploy static content to Pages
 
 on:
   push:
-    branches: ['main']
+    branches: ['main', 'express-rewrite']
 
   workflow_dispatch:
 
@@ -22,8 +22,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Change directory to frontend
-        run: cd frontend
       - name: Checkout
         uses: actions/checkout@v4
       - name: Set up Node
@@ -33,14 +31,16 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: yarn install --frozen-lockfile
+        working-directory: ./frontend
       - name: Build
         run: yarn build
+        working-directory: ./frontend
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'dist'
+          path: 'frontend/dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
