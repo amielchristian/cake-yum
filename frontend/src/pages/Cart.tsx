@@ -3,7 +3,7 @@ import "../styles/cart-styles.css";
 import { useState } from "react";
 
 export default function Cart() {
-  const [orders, setOrders] = useState([]);
+  const [orders, _] = useState([]);
 
   return (
     <>

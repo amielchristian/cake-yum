@@ -2,7 +2,7 @@ import "../styles/header-styles.css";
 import { useState } from "react";
 
 export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoggedIn, _] = useState<boolean>(false);
   const username = "Guest"; // Replace with actual username logic
 
   return (
