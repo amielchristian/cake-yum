@@ -13,22 +13,22 @@ export default function Header() {
       <nav className="navbar">
         <ul className="nav-ul">
           <li className="nav-list">
-            <a href="/" className="nav-item">
+            <a href="/cake-yum" className="nav-item">
               SHOP
             </a>
           </li>
           <li className="nav-list">
-            <a href="/products" className="nav-item">
+            <a href="/cake-yum/products" className="nav-item">
               PRODUCTS
             </a>
           </li>
           <li className="nav-list">
-            <a href="/purchases" className="nav-item">
+            <a href="/cake-yum/purchases" className="nav-item">
               ORDER TRACKER
             </a>
           </li>
           <li className="nav-list">
-            <a href="cart" className="nav-item">
+            <a href="/cake-yum/cart" className="nav-item">
               CART
             </a>
           </li>

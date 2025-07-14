@@ -8,14 +8,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 
 h2 {
-    font-family: 'cookie';
+    font-family: 'Cookie';
     font-size: 55px;
     line-height: 6.5rem;
     font-weight: 700;
 }
 
 h3 {
-    font-family: "century-gothic", monospace;
+    font-family: "Century Gothic", monospace;
     letter-spacing: 0.5rem;
     color: #333;
 }

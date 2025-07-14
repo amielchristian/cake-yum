@@ -1,4 +1,5 @@
 import Header from "../components/Header";
+import "../styles/products-styles.css";
 
 export default function Products() {
   const items = [

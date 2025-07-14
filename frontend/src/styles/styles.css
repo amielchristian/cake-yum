@@ -8,6 +8,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this t
 */
 
 /* Custom properties/variables  */
+@font-face {
+    font-family: 'Cookie';
+    src: url('/fonts/Cookie-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
     --main-yellow: #F7F6CF;
     --main-turquoise: #B6D8F2;
