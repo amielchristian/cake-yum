@@ -1,0 +1,16 @@
+{
+  "name": "cake-yum",
+  "version": "1.0.0",
+  "main": "game-of-life-web",
+  "author": "Amiel Christian Mala-ay <amielchristian.malaay.cics@ust.edu.ph>, Patricia Denise Poblete <patriciadenise.poblete.cics@ust.edu.ph>, Ann Clarisse Salazar <annclarisse.salazar.cics@ust.edu.ph>, Charles Ansbert Joaquin",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "frontend/*"
+  ],
+  "scripts": {
+    "dev": "yarn --cwd frontend dev",
+    "build": "yarn --cwd frontend build",
+    "preview": "yarn --cwd frontend preview"
+  }
+}
