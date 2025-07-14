@@ -6,7 +6,7 @@ import Products from "./pages/Products";
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/cake-yum">
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="/products" element={<Products />} />
